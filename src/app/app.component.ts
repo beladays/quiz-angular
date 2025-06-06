@@ -9,7 +9,6 @@ import {CommonModule} from '@angular/common'
   imports: [
     CommonModule,
     RouterOutlet,
-    HomeComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
