@@ -1,0 +1,32 @@
+<div class="bg" style="background-color: #F8F8F8;">
+    <div class="parent">
+        <div class="child">
+            <div nz-row class="imgDiv">
+                <h1 style="margin-left: 80px;">Sign up</h1>
+            </div>
+                <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+                    <nz-form-item>
+                        <nz-form-control nzHasFeedback nzErrorTip="E-mail inválido!">
+                            <input nz-input placeholder = "E-mail"/>
+                        </nz-form-control>
+                    </nz-form-item>
+
+                    <nz-form-item>
+                        <nz-form-control nzHasFeedback nzErrorTip="Senha inválida!">
+                            <input nz-input placeholder = "Senha" type="password" formControlName="password"/>
+                        </nz-form-control>
+                    </nz-form-item>
+
+                       <nz-form-item>
+                        <nz-form-control nzHasFeedback nzErrorTip="Nome inválido!">
+                            <input nz-input placeholder = "Nome" formControlName="name"/>
+                        </nz-form-control>
+                    </nz-form-item>
+
+                    <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Cadastrar</button>
+                    Or <a routerLink="/login"> login now! </a>
+
+                </form>
+        </div>
+    </div>
+</div>
