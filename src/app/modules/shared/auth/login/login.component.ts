@@ -20,11 +20,31 @@ export class LoginComponent {
     private message: NzMessageService,
     private router: Router,
   ){}
+
   validateForm!: FormGroup;
+
   ngOnInit(){
     this.validateForm = this.fb.group({
       email: [null, Validators.required],
       password: [null, Validators.required]
     })
   }
+  submitForm(){
+      this.authService.login(this.validateForm.value).subscribe(res=>{
+        this.message
+        .success(
+          `Login Sucess.`,
+          {nzDuration: 2000}
+        );
+        console.log(res);
+      }, error=>{
+        this.message
+        .error(
+          `Bad credentials`,
+          {nzDuration: 2000}
+        );
+      }
+    )
+  }
+
 }
