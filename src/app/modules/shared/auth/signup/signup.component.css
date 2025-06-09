@@ -1,47 +1,104 @@
-[nz-form]{
+[nz-form] {
     max-width: 600px;
 }
-.phone-select{
+
+.phone-select {
     width: 70px;
 }
-.register-are{
+
+.register-are {
     margin-bottom: 8px;
 }
-.child{
+
+
+h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #6a7ba2;
+    margin-bottom: 20px;
+}
+
+.child {
     padding: 50px;
     position: absolute;
     width: 380px;
-    background-color: white;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    box-shadow: 1px 1px 15px -7px rgba(0,0,0,0.1);
+    box-shadow: 1px 1px 15px -7px rgba(0, 0, 0, 0.1);
     border-radius: 5px;
     margin-bottom: 22px;
+
+    background: #ffffffc0;
+    box-shadow: 1px 1px 15px -7px rgba(0, 0, 0, 0, 0.1);
+    border-radius: 18px;
+    margin-bottom: 32px;
 }
-nz-form-control{
+
+nz-form-control {
     min-width: 280px;
 }
-.parent{
+
+.parent {
     width: 100%;
     height: 91vh;
     position: relative;
+
+    background: linear-gradient(180deg, #e2d6f9 0%, #c7e3e7 100%);
+
 }
-.login-form-margin{
+
+.login-form-margin {
     margin-bottom: 16px;
+
+
 }
-.login-form-forgot{
+
+.login-form-forgot {
     float: right;
 }
-.login-form-button{
+
+.login-form-button {
     width: 100%;
+
 }
-button{
-    background-color: #001529;
+
+button {
     border: none;
+
+    background: #a68ee6;
+    color: #fff;
+    border-radius: 8px;
+    padding: 8px;
+    margin-top: 15px;
+    width: 100%;
+    height: 40px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
 }
-.imgDiv{
+
+.imgDiv {
     width: 100%;
     vertical-align: middle;
     margin-bottom: 40px;
+}
+
+button:hover {
+    background-color: #6a7ba2;
+}
+
+a:hover {
+
+    color: #6a7ba2;
+}
+
+input {
+
+    margin-bottom: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+
 }

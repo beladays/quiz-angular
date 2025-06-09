@@ -1,4 +1,4 @@
-<div class="bg" style="background-color: #F8F8F8;">
+<div class="bg">
     <div class="parent">
         <div class="child">
             <div nz-row class="imgDiv">
@@ -7,20 +7,22 @@
             <form nz-form [formGroup]="validateForm" class="login-form" (ngSubmit)="submitForm()">
                 <nz-form-item>
                     <nz-form-control nzErrorTip="Por favor informe o e-mail!">
-                        <input type="text" nz-input formControlName="email" placeholder="Email"/>
+                        <input type="text" nz-input formControlName="email" placeholder="Email" />
                     </nz-form-control>
                 </nz-form-item>
 
-                    <nz-form-item>
-                        <nz-form-control nzErrorTip="Por favor informe a senha!">
-                            <input type="password" nz-input formControlName="password" placeholder="Senha"/>
-                        </nz-form-control>
-                    </nz-form-item>
-
-                    <button nz-button class="login-form button login-form-margin" [nzType]="'primary'">Entrar</button>
-                    Ou <a routerLink="/register">cadastre-se!</a>
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="Por favor informe a senha!">
+                        <input type="password" nz-input formControlName="password" placeholder="Senha" />
+                    </nz-form-control>
+                </nz-form-item>
+                <div class="links" style="display: flex; gap: 30px;">
+                    <a routerLink="/register">cadastre-se!</a>
                     <br>
-                    <a routerLink="/forget" >esqueceu a senha?</a>
+                    <a routerLink="/forget">esqueceu a senha?</a>
+                </div>
+                <button nz-button class="login-form button login-form-margin" [nzType]="'primary'">Entrar</button>
+                <br>
             </form>
         </div>
     </div>

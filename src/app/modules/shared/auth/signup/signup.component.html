@@ -4,29 +4,42 @@
             <div nz-row class="imgDiv">
                 <h1 style="margin-left: 80px;">Sign up</h1>
             </div>
-                <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
-                    <nz-form-item>
-                        <nz-form-control nzHasFeedback nzErrorTip="E-mail inválido!">
-                            <input nz-input placeholder = "E-mail"/>
-                        </nz-form-control>
-                    </nz-form-item>
+            <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+                <nz-form-item>
+                    <nz-form-control nzHasFeedback nzErrorTip="E-mail inválido!">
+                        <input nz-input placeholder="E-mail" />
+                    </nz-form-control>
+                </nz-form-item>
 
-                    <nz-form-item>
-                        <nz-form-control nzHasFeedback nzErrorTip="Senha inválida!">
-                            <input nz-input placeholder = "Senha" type="password" formControlName="password"/>
-                        </nz-form-control>
-                    </nz-form-item>
+                <nz-form-item>
+                    <nz-form-control nzHasFeedback nzErrorTip="Senha inválida!">
+                        <input nz-input placeholder="Senha" type="password" formControlName="password" />
+                    </nz-form-control>
+                </nz-form-item>
 
-                       <nz-form-item>
-                        <nz-form-control nzHasFeedback nzErrorTip="Nome inválido!">
-                            <input nz-input placeholder = "Nome" formControlName="name"/>
-                        </nz-form-control>
-                    </nz-form-item>
+                <nz-form-item>
+                    <nz-form-control nzHasFeedback nzErrorTip="Nome inválido!">
+                        <input nz-input placeholder="Nome" formControlName="name" />
+                    </nz-form-control>
+                </nz-form-item>
 
-                    <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Cadastrar</button>
-                    Or <a routerLink="/login"> login now! </a>
+                <nz-form-item>
+                    <nz-form-control nzHasFeedback nzErrorTip="Data inválida!">
+                        <input nz-input placeholder="Data de nascimento" type="date" formControlName="birthDate" />
+                    </nz-form-control>
+                </nz-form-item>
 
-                </form>
+
+                <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Cadastrar</button>
+
+                <div style="text-align: center; margin-top: 16px;">
+                    Or <br>
+                    <a routerLink="/login">login now!</a>
+                </div>
+
+
+
+            </form>
         </div>
     </div>
 </div>

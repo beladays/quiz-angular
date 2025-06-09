@@ -1,44 +1,92 @@
-.login-form{
+.login-form {
     max-width: 300px;
+
 }
-.imgDiv{
+
+.imgDiv {
     width: 100%;
     vertical-align: middle;
     margin-bottom: 40px;
+
 }
 
-.login-form-margin{
+h1 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: #6a7ba2;
+    margin-bottom: 20px;
+}
+
+.login-form-margin {
     margin-bottom: 26px;
+
+
 }
 
-.login-form-forgot{
+.login-form-forgot {
     float: right;
 }
-.login-form-button{
+
+.login-form-button {
     width: 100%;
 }
-.child{
+
+.child {
     /*border: 2px solid black;*/
     padding: 50px;
     position: absolute;
     width: 380px;
-    background-color: white;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
 
-    background: white;
-    box-shadow: 1px 1px 15px -7px rgba(0,0,0,0,0.1);
-    border-radius: 5px;
+    background: #ffffffc0;
+    box-shadow: 1px 1px 15px -7px rgba(0, 0, 0, 0, 0.1);
+    border-radius: 18px;
     margin-bottom: 32px;
 }
 
-.parent{
+.parent {
     width: 100%;
     height: 91vh;
     position: relative;
+
+    background: linear-gradient(180deg, #e2d6f9 0%, #c7e3e7 100%);
+
+
+
 }
-button{
-    background-color: #001529;
+
+button {
     border: none;
+
+    background: #a68ee6;
+    color: #fff;
+    border-radius: 8px;
+    padding: 8px;
+    margin-top: 15px;
+    width: 100%;
+    height: 40px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+
+}
+
+button:hover {
+    background-color: #6a7ba2;
+}
+
+a:hover {
+    color: #6a7ba2;
+}
+
+input {
+
+    margin-bottom: 10px;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+
 }
