@@ -6,9 +6,21 @@
     <div class="nav-links">
         <a nz-button nzType="link" routerLink="/register" routerLinkActive="active">Sign Up</a>
         <a nz-button nzType="link" routerLink="/login" routerLinkActive="active">Login</a>
+
+
+        <a nz-button nzType="link" routerLink="/user/dashboard" routerLinkActive="active">Dashboard user</a>
+           <a nz-button nzType="link" routerLink="/admin/dashboard" routerLinkActive="active">Dashboard admin</a>
+        <a nz-button nzType="link" routerLink="/user/view-test-results" routerLinkActive="active">Ver resultados</a>
+        <a nz-button nzType="link" routerLink="/admin/create-test" routerLinkActive="active">Criar Quiz</a>
+        <a nz-button nzType="link" routerLink="/user/perfil" routerLinkActive="active">Meu Perfil</a>
+
+
+
     </div>
 
 </nz-header>
+
+
 
 <nz-content>
     <router-outlet></router-outlet>

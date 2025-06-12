@@ -1,0 +1,25 @@
+<div class="bg">
+    <div class="parent">
+        <div class="child">
+            <form nz-form [formGroup]="testForm" class="login-form">
+                <nz-form-label [nzNoColon]="true">Título</nz-form-label>
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="Esta entrada é obrigatória!">
+                        <input type="text" nz-input formControlName="title" placeholder="Título">
+                    </nz-form-control>
+                </nz-form-item>
+
+                <nz-form-label [nzNoColon]="true">Descrição</nz-form-label>
+                <nz-form-item>
+                    <nz-form-control nzErrorTip="Esta entrada é obrigatória!">
+                        <textarea rows="4" nz-input formControlName="description" placeholder="Descrição"></textarea>
+                    </nz-form-control>
+                </nz-form-item>
+
+                <div style="padding-bottom: 30px;">
+                    <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Enviar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
