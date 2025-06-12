@@ -1,6 +1,6 @@
 <div class="parent">
     <div class="child">
-        <form nz-form [formGroup]="questionForm" class="login-form">
+        <form nz-form [formGroup]="questionForm" class="login-form" (ngSubmit)="submitForm()">
             <nz-form-label [nzNoColon]="true">Título da pergunta</nz-form-label>
             <nz-form-item>
                 <nz-form-control nzErrorTip="Essa entrada é necessária!">
@@ -44,7 +44,7 @@
             </nz-form-item>
 
             <div style="padding-bottom: 30px;">
-                <button nz-button class="login-form-button" [nzType]="'primary'">Enviar</button>
+                <button nz-button class="login-form-button" [nzType]="'primary'" [disabled]="questionForm.invalid">Enviar</button>
             </div>
 
         </form>
