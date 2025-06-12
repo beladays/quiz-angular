@@ -13,6 +13,7 @@ import { AuthService } from '../services/auth.service';
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
+
 export class LoginComponent {
 
   constructor(private fb: FormBuilder,
@@ -24,7 +25,7 @@ export class LoginComponent {
   validateForm!: FormGroup;
 
   ngOnInit(){
-    this.validateForm = this.fb.group({
+      this.validateForm = this.fb.group({
       email: [null, Validators.required],
       password: [null, Validators.required]
     })
@@ -34,14 +35,16 @@ export class LoginComponent {
         this.message
         .success(
           `Login Sucess.`,
-          {nzDuration: 2000}
+          {nzDuration: 5000}
         );
+        
         console.log(res);
+
       }, error=>{
         this.message
         .error(
           `Bad credentials`,
-          {nzDuration: 2000}
+          {nzDuration: 5000}
         );
       }
     )

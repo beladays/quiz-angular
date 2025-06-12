@@ -18,10 +18,11 @@ export class SignupComponent {
   constructor(private fb: FormBuilder,
     private message: NzMessageService,
     private router: Router,
-    private authService:AuthService
+    private authService: AuthService
   ){}
 
   validateForm!: FormGroup;
+
   ngOnInit(){
     this.validateForm = this.fb.group({
       email: [null, [Validators.required, Validators.email]],
@@ -32,12 +33,14 @@ export class SignupComponent {
 
   submitForm(){
     this.authService.register(this.validateForm.value).subscribe(res=>{
-    this.message
-    .success(
-      `Signup successful`,
-      {nzDuration: 5000}
+      this.message
+        .success(
+          `Signup successful`,
+          {nzDuration: 5000}
     );
+    
     this.router.navigateByUrl("/login");
+
     }, error =>{
       this.message
       .error(
