@@ -21,11 +21,11 @@ export class DashboardComponent {
     ){}
 
     ngOnInit(){
-    this.getAllTests();
+    this.getAllTest();
   }
 
-  getAllTests(){
-    this.testService.getAllTests().subscribe(res=>{
+  getAllTest(){
+    this.testService.getAllTest().subscribe(res=>{
       this.tests = res;
     }, error=>{
       this.notification

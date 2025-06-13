@@ -15,7 +15,7 @@ export class AdminService {
     return this.http.post(BASIC_URL + `api/test`, testDto);
   }
 
- getAllTests(): Observable<any>{
+ getAllTest(): Observable<any>{
     return this.http.get(BASIC_URL + `api/test`);
   }
 
@@ -27,6 +27,8 @@ export class AdminService {
  getTestQuestions(id: number): Observable<any>{
     return this.http.get(BASIC_URL + `api/test/${id}`);
   }
-
+  getTestResults(): Observable<any>{
+    return this.http.get(BASIC_URL + `api/test/test-results`);
+  }
 
 }
