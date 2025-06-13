@@ -18,6 +18,8 @@ export class TakeTestComponent {
   questions: any[] = [];
   testId: any;
 
+selectedAnswers: {[key:number]: string} ={};
+
   constructor(private testService: TestService,
     private activatedRoute: ActivatedRoute,
     private message: NzMessageService,
@@ -33,4 +35,8 @@ export class TakeTestComponent {
       })
     })
   }
+  onAnswerChange(questionId: number, selectedOption:string){
+      this.selectedAnswers[questionId]= selectedOption;
+      console.log(this.selectedAnswers);
+    }
 }
