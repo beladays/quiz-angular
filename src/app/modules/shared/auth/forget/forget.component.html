@@ -1,1 +1,22 @@
-<p>forget works!</p>
+<div class="forget-container">
+  <nz-card nzTitle="Recuperar Senha" class="forget-card">
+    <form [formGroup]="forgetForm" (ngSubmit)="submitForm()" nz-form>
+      
+      <nz-form-item>
+        <nz-form-label [nzSpan]="6" nzFor="email" nzRequired>Email</nz-form-label>
+        <nz-form-control [nzSpan]="14" nzErrorTip="Por favor insira um e-mail válido!">
+          <input nz-input formControlName="email" id="email" placeholder="Digite seu e-mail" />
+        </nz-form-control>
+      </nz-form-item>
+      
+      <nz-form-item>
+        <nz-form-control [nzSpan]="14" [nzOffset]="6">
+          <button nz-button nzType="primary" [nzLoading]="loading" [disabled]="forgetForm.invalid">
+            Enviar
+          </button>
+        </nz-form-control>
+      </nz-form-item>
+
+    </form>
+  </nz-card>
+</div>
