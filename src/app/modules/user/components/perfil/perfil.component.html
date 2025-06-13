@@ -1,0 +1,40 @@
+<div class="parent">
+  <div class="child">
+    <nz-typography>
+      <h2>Perfil do Usuário</h2>
+    </nz-typography>
+
+    <div class="user-info">
+      <nz-avatar [nzSrc]="user.avatarUrl" nzSize="large"></nz-avatar>
+      <div>
+        <p><strong>Nome:</strong> {{ user.name }}</p>
+        <p><strong>Email:</strong> {{ user.email }}</p>
+      </div>
+    </div>
+
+    <nz-typography>
+      <h3>Meus Resultados</h3>
+    </nz-typography>
+
+    <nz-table [nzData]="quizStats" [nzPageSize]="5" [nzFrontPagination]="true" [nzShowPagination]="false" *ngIf="quizStats?.length">
+      <thead>
+        <tr>
+          <th>Nome do Quiz</th>
+          <th>Total de Questões</th>
+          <th>Respostas Corretas</th>
+          <th>Porcentagem</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let quiz of quizStats">
+          <td>{{ quiz.testName }}</td>
+          <td>{{ quiz.totalQuestions }}</td>
+          <td>{{ quiz.correctAnswers }}</td>
+          <td>{{ quiz.percentage }}%</td>
+        </tr>
+      </tbody>
+    </nz-table>
+
+    <p *ngIf="quizStats?.length === 0">Nenhum resultado encontrado.</p>
+  </div>
+</div>
