@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { SharedModule } from '../../../shared/auth/signup/shared/shared.module';
-//import { TestService } from '../../services/test.service';
+import { TestService } from '../../services/test.service'; // se for testar retirar!
 
 @Component({
   selector: 'app-view-my-test-results',
@@ -14,19 +14,23 @@ export class ViewMyTestResultsComponent {
 
   dataSet: any;
 
- // constructor(private testService: TestService){}
-    constructor() {} //teste!
+  constructor(private testService: TestService){}
 
+ /* teste!
+    constructor() {}
 
   ngOnInit(){
     this.getTestResults();
   }
+*/
 
- // getTestResults(){
- //   this.testService.getMyTestResults().subscribe(res=>{
- //     this.dataSet = res;
- //     console.log(this.dataSet);
- //   })
+  getTestResults(){
+    this.testService.getMyTestResults().subscribe(res=>{
+      this.dataSet = res;
+      console.log(this.dataSet);
+    })
+
+  /*
   getTestResults(){ //teste!
     this.dataSet = [
       { testName: 'Quiz Matemática', totalQuestions: 10, correctAnswers: 7, percentage: 70 },
@@ -36,5 +40,6 @@ export class ViewMyTestResultsComponent {
 
     console.log(this.dataSet);
   }
+    */
 }
-
+}

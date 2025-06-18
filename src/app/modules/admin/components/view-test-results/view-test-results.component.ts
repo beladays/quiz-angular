@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { SharedModule } from '../../../shared/auth/signup/shared/shared.module';
-//import { AdminService } from '../../services/admin.service';
+import { AdminService } from '../../services/admin.service'; // retirar se for testar!
 
 @Component({
   selector: 'app-view-test-results',
@@ -14,19 +14,22 @@ export class ViewTestResultsComponent {
 
   resultsData: any;
 
-  //constructor(private testService: AdminService){}
+  constructor(private testService: AdminService){}
+
+  /* teste!
     constructor() {} //teste!
   ngOnInit(){
     this.getTestResults();
   }
+*/
 
-  //getTestResults(){
-  //  this.testService.getTestResults().subscribe(res=>{
-  //    this.resultsData = res;
-  //    console.log(this.resultsData);
-  //  })
+  getTestResults(){
+    this.testService.getTestResults().subscribe(res=>{
+      this.resultsData = res;
+      console.log(this.resultsData);
+    })
 
-  
+  /* teste!
   getTestResults(){
     this.resultsData = [ //teste!
       { testName: 'Quiz Matemática', totalQuestions: 10, correctAnswers: 7, percentage: 70, userName: 'Carlos' },
@@ -37,4 +40,6 @@ export class ViewTestResultsComponent {
   }
 }
 
-
+*/
+  }
+}
