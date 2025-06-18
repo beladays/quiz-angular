@@ -2,7 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-const BASIC_URL = "http://localhost:8080/"; //url do backend!!!!!
+const BASIC_URL = "http://localhost:8000/login"; //url do backend!!!!!
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -11,11 +13,12 @@ export class AuthService {
 
   constructor(private http:HttpClient) { }
 
-  register(data): Observable<any>{
-    return this.http.post(BASIC_URL + "api/auth/sign-up", data);
-  }
-
+  register(data: any): Observable<any> {
+  return this.http.post('http://localhost:8000/registro', data, {
+    headers: { 'Content-Type': 'application/json' }
+  });
+}
   login(loginRequest: any): Observable<any>{
-    return this.http.post(BASIC_URL + "api/auth/login", loginRequest);
+    return this.http.post(BASIC_URL, loginRequest);
   }
 }

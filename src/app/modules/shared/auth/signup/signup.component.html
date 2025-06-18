@@ -7,19 +7,19 @@
             <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
                 <nz-form-item>
                     <nz-form-control nzHasFeedback nzErrorTip="E-mail inválido!">
-                        <input nz-input placeholder="E-mail" />
+                        <input nz-input placeholder="E-mail" formControlName="email"/>
                     </nz-form-control>
                 </nz-form-item>
 
                 <nz-form-item>
                     <nz-form-control nzHasFeedback nzErrorTip="Senha inválida!">
-                        <input nz-input placeholder="Senha" type="password" formControlName="password" />
+                        <input nz-input placeholder="Senha" type="password" formControlName="senha" />
                     </nz-form-control>
                 </nz-form-item>
 
                 <nz-form-item>
                     <nz-form-control nzHasFeedback nzErrorTip="Nome inválido!">
-                        <input nz-input placeholder="Nome" formControlName="name" />
+                        <input nz-input placeholder="Nome" formControlName="nome" />
                     </nz-form-control>
                 </nz-form-item>
 
