@@ -7,41 +7,43 @@ const USER = 'q_user';
 })
 export class UserStorageService {
 
-  constructor() { }
+  constructor() {}
 
-    static saveUser(user:any): void{
-      window.localStorage.removeItem(USER);
-      window.localStorage.setItem(USER, JSON.stringify(user));
-    }
+  private static isBrowser(): boolean {
+    return typeof window !== 'undefined' && typeof window.localStorage !== 'undefined';
+  }
 
-    static getUser():any{
-      return JSON.parse(localStorage.getItem(USER));
-    }
+  static saveUser(user: any): void {
+    if (!this.isBrowser()) return;
+    window.localStorage.setItem(USER, JSON.stringify(user));
+  }
 
-    static getUserId(): string{
-      const user = this.getUser();
-      if (user == null){return'';}
-      return user.id;
-    }
+  static getUser(): any {
+    if (!this.isBrowser()) return null;
+    const user = window.localStorage.getItem(USER);
+    return user ? JSON.parse(user) : null;
+  }
 
-     static getUserRole(): string{
-      const user = this.getUser();
-      if (user == null){return'';}
-      return user.role;
-    }
+  static getUserId(): string {
+    const user = this.getUser();
+    return user?.id || '';
+  }
 
-    static isAdminLoggedIn(): boolean{
-      const role: string = this.getUserRole();
-      return role == 'ADMIN';
-    }
+  static getUserRole(): string {
+    const user = this.getUser();
+    return user?.role || '';
+  }
 
-    static isUserLoggedIn(): boolean{
-      const role: string = this.getUserRole();
-      return role == 'USER';
-    }
+  static isAdminLoggedIn(): boolean {
+    return this.getUserRole() === 'ADMIN';
+  }
 
-    static signOut(): void{
-      window.localStorage.removeItem(USER);
-    }
+  static isUserLoggedIn(): boolean {
+    return this.getUserRole() === 'USER';
+  }
 
+  static signOut(): void {
+    if (!this.isBrowser()) return;
+    window.localStorage.removeItem(USER);
+  }
 }

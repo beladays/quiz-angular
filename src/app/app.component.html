@@ -1,3 +1,6 @@
+<div *ngIf="!isUserLoggedIn && !isAdminLoggedIn">
+
+
 <nz-header class="main-header" nz-row nzTyper="flex">
     <div>
         <a style="color: white; margin-left: 50px; font-size: 18px;font-weight: bolder;" routerLink="/login">Quiz da Galera</a>
@@ -5,23 +8,42 @@
     <div class="nav-links">
         <a nz-button nzType="link" routerLink="/register" routerLinkActive="active">Sign Up</a>
         <a nz-button nzType="link" routerLink="/login" routerLinkActive="active">Login</a>
-
-
-        <a nz-button nzType="link" routerLink="/user/dashboard" routerLinkActive="active">Dashboard user</a>
-           <a nz-button nzType="link" routerLink="/admin/dashboard" routerLinkActive="active">Dashboard admin</a>
-        <a nz-button nzType="link" routerLink="/user/view-test-results" routerLinkActive="active">Ver resultados user </a>
-         <a nz-button nzType="link" routerLink="/admin/view-test-results" routerLinkActive="active">Ver resultados admin </a>
-        <a nz-button nzType="link" routerLink="/admin/create-test" routerLinkActive="active">Criar Quiz</a>
-        <a nz-button nzType="link" routerLink="/user/perfil" routerLinkActive="active">Meu Perfil</a>
-
-
-
     </div>
 
+
 </nz-header>
+</div>
+
+<div *ngIf="isAdminLoggedIn">
+<nz-header class="main-header" nz-row nzTyper="flex">
+    <div>
+        <a style="color: white; margin-left: 50px; font-size: 18px;font-weight: bolder;" routerLink="/admin/dashboard">Quiz da Galera</a>
+    </div>
+    <div class="nav-links">
+        <a nz-button nzType="link" routerLink="/admin/dashboard" routerLinkActive="active">Dashboard</a>
+        <a nz-button nzType="link" routerLink="/admin/create-test" routerLinkActive="active">Criar Quiz</a>
+        <a nz-button nzType="link" routerLink="/admin/view-test-results" routerLinkActive="active">Ver resultados</a>
+        <a nz-button nzType="link"(click)="logout()" >Logout</a>
+    </div>
+</nz-header>
+</div>
+
+<div *ngIf="isUserLoggedIn">
+<nz-header class="main-header" nz-row nzTyper="flex">
+    <div>
+        <a style="color: white; margin-left: 50px; font-size: 18px;font-weight: bolder;" routerLink="/user/dashboard">Quiz da Galera</a>
+    </div>
+    <div class="nav-links">
+        <a nz-button nzType="link" routerLink="/user/dashboard" routerLinkActive="active">Dashboard</a>
+        <a nz-button nzType="link" routerLink="/user/view-test-results" routerLinkActive="active">Ver resultados</a>
+        <a nz-button nzType="link"(click)="logout()" >Logout</a>
+    </div>
+</nz-header>
+</div>
 
 
 
-<nz-content>
-    <router-outlet></router-outlet>
-</nz-content>
+
+
+
+<nz-content><router-outlet></router-outlet></nz-content>

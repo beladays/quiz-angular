@@ -4,10 +4,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterLink, RouterOutlet } from '@angular/router';
 import { DemoNgZorroAntdModules } from '../../../../../DemoNgZorroAntdModules';
 
-
-
-
-
 @NgModule({
   declarations: [],
   imports: [
@@ -16,9 +12,7 @@ import { DemoNgZorroAntdModules } from '../../../../../DemoNgZorroAntdModules';
     ReactiveFormsModule,
     RouterOutlet,
     RouterLink,
-DemoNgZorroAntdModules
-
-
+    DemoNgZorroAntdModules
 
   ], exports:[
     CommonModule,
@@ -26,7 +20,7 @@ DemoNgZorroAntdModules
     ReactiveFormsModule,
     RouterOutlet,
     RouterLink,
-     DemoNgZorroAntdModules
+    DemoNgZorroAntdModules
   ]
 })
 export class SharedModule { }

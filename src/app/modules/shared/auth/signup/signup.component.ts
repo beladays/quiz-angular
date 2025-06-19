@@ -18,7 +18,7 @@ export class SignupComponent {
   constructor(private fb: FormBuilder,
     private message: NzMessageService,
     private router: Router,
-    private authService: AuthService
+    private authService: AuthService 
   ){}
 
   validateForm!: FormGroup;
@@ -35,7 +35,7 @@ export class SignupComponent {
     this.authService.register(this.validateForm.value).subscribe(res=>{
       this.message
         .success(
-          `Signup successful`,
+          `Cadastrado com sucesso! `,
           {nzDuration: 5000}
     );
     

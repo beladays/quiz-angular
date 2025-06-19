@@ -2,8 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-const BASIC_URL = "http://localhost:8000/login"; //url do backend!!!!!
-
+const BASIC_URL = "http://localhost:8000/login"; 
 
 
 @Injectable({
