@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SharedModule } from '../../../shared/auth/signup/shared/shared.module';
+import { sharedImports } from '../../../shared/auth/signup/shared/shared.module';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { TestService } from '../../services/test.service'; //se for testar retirar!
 
@@ -7,7 +7,7 @@ import { TestService } from '../../services/test.service'; //se for testar retir
   selector: 'app-dashboard',
   standalone: true,
   imports: [
-    SharedModule
+    sharedImports
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'

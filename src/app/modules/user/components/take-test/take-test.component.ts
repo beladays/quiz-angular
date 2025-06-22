@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
-import { SharedModule } from '../../../shared/auth/signup/shared/shared.module';
 import { ActivatedRoute } from '@angular/router';
 import { Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { TestService } from '../../services/test.service';
 import { UserStorageService } from '../../../shared/auth/services/user-storage.service';
+import { sharedImports } from '../../../shared/auth/signup/shared/shared.module';
 
 @Component({
   selector: 'app-take-test',
   imports: [
-    SharedModule
+   sharedImports
   ],
   templateUrl: './take-test.component.html',
   styleUrl: './take-test.component.css'

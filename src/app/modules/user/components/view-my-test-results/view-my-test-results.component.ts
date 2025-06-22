@@ -1,11 +1,11 @@
 import { Component } from '@angular/core';
-import { SharedModule } from '../../../shared/auth/signup/shared/shared.module';
 import { TestService } from '../../services/test.service'; // se for testar retirar!
+import { sharedImports } from '../../../shared/auth/signup/shared/shared.module';
 
 @Component({
   selector: 'app-view-my-test-results',
   imports: [
-    SharedModule
+   sharedImports
   ],
   templateUrl: './view-my-test-results.component.html',
   styleUrl: './view-my-test-results.component.css'

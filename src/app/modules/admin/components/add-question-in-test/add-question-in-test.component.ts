@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { SharedModule } from '../../../shared/auth/signup/shared/shared.module';
+import { sharedImports } from '../../../shared/auth/signup/shared/shared.module';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { AdminService } from '../../services/admin.service';
@@ -9,7 +9,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-add-question-in-test',
   imports: [
-    SharedModule
+    sharedImports
   ],
   templateUrl: './add-question-in-test.component.html',
   styleUrl: './add-question-in-test.component.css'

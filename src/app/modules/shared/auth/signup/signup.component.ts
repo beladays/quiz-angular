@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
-import { SharedModule } from './shared/shared.module';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { AuthService } from '../services/auth.service';
+import { sharedImports } from './shared/shared.module';
 
 @Component({
   selector: 'app-signup',
   standalone: true,
   imports: [
-    SharedModule,
+    sharedImports
   ],
   templateUrl: './signup.component.html',
   styleUrl: './signup.component.css'

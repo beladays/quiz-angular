@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { SharedModule } from '../../../shared/auth/signup/shared/shared.module';
+import { sharedImports } from '../../../shared/auth/signup/shared/shared.module';
 import { ActivatedRoute } from '@angular/router';
 import { AdminService } from '../../services/admin.service';
 
 @Component({
   selector: 'app-view-test',
   imports: [
-    SharedModule
+    sharedImports
   ],
   templateUrl: './view-test.component.html',
   styleUrl: './view-test.component.css'

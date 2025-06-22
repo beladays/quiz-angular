@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import { SharedModule } from '../../../../shared/auth/signup/shared/shared.module';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { AdminService } from '../../../services/admin.service';
+import { sharedImports } from '../../../../shared/auth/signup/shared/shared.module';
 
 @Component({
   selector: 'app-create-test',
   imports: [
-    SharedModule,
+   sharedImports
   ],
   templateUrl: './create-test.component.html',
   styleUrl: './create-test.component.css'

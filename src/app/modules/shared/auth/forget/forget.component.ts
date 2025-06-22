@@ -1,12 +1,16 @@
 import { Component } from '@angular/core';
-import { SharedModule } from '../../../shared/auth/signup/shared/shared.module';
+
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
+import { sharedImports } from '../signup/shared/shared.module';
 
 @Component({
   selector: 'app-forget',
   standalone: true,
-  imports: [SharedModule],
+  imports: [
+    sharedImports
+
+  ],
   templateUrl: './forget.component.html',
   styleUrls: ['./forget.component.css']
 })

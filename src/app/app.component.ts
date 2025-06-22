@@ -1,38 +1,49 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { RouterModule } from '@angular/router';
-import { SharedModule } from './modules/shared/auth/signup/shared/shared.module';
 import { UserStorageService } from './modules/shared/auth/services/user-storage.service';
-
-
+import { AuthStateService } from './modules/shared/auth/services/auth-state.service';
+import { DemoNgZorroAntdModules } from './DemoNgZorroAntdModules';
+import { sharedImports } from './modules/shared/auth/signup/shared/shared.module';
 
 @Component({
   selector: 'app-root',
+  standalone: true,
   imports: [
     RouterOutlet,
     RouterModule,
-    SharedModule
+    sharedImports,
+    DemoNgZorroAntdModules
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-export class AppComponent {
-  title = 'quiz-angular';
 
-  isUserLoggedIn: boolean = UserStorageService.isUserLoggedIn();
-  isAdminLoggedIn: boolean = UserStorageService.isAdminLoggedIn();
+export class AppComponent implements OnInit {
+  isUserLoggedIn = false;
+  isAdminLoggedIn = false;
 
-  constructor(private router: Router){}
+  constructor(
+    private authStateService: AuthStateService,
+    private router: Router
+  ) {}
 
-  ngOnInit(){
-    this.router.events.subscribe(event=>{
-      this.isUserLoggedIn = UserStorageService.isUserLoggedIn();
-      this.isAdminLoggedIn = UserStorageService.isAdminLoggedIn();
-    })
+  ngOnInit() {
+    this.authStateService.loggedIn$.subscribe(() => {
+      this.updateLoginFlags();
+    });
+
+    this.updateLoginFlags();
   }
 
-  logout(){
+  updateLoginFlags() {
+   this.isUserLoggedIn = UserStorageService.isUserLoggedIn();
+    this.isAdminLoggedIn = UserStorageService.isAdminLoggedIn();
+  }
+
+  logout() {
     UserStorageService.signOut();
-    this.router.navigateByUrl('login');
+    this.authStateService.setLoggedIn(false);
+    this.router.navigateByUrl('/login');
   }
 }

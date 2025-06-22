@@ -1,12 +1,12 @@
 import { Component } from '@angular/core';
-import { SharedModule } from '../../../shared/auth/signup/shared/shared.module';
+import { sharedImports } from '../../../shared/auth/signup/shared/shared.module';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { AdminService } from '../../services/admin.service'; //retirar se for testar!
 
 @Component({
   selector: 'app-dashboard',
   imports: [
-    SharedModule
+    sharedImports
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
