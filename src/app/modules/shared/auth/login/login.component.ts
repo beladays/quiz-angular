@@ -42,7 +42,7 @@ export class LoginComponent {
   }
   submitForm(){
       this.authService.login(this.validateForm.value).subscribe(res=>{
-        // this.message.success('Login com Sucesso.', {nzDuration: 5000});
+        this.message.success('Login com Sucesso.', {nzDuration: 5000});
 
           const user = {
            id: res.id,
@@ -62,7 +62,7 @@ export class LoginComponent {
       }, error=>{
         this.message
         .error(
-          `Bad credentials`,
+          `Credenciais inválidas`,
           {nzDuration: 5000}
         );
       }

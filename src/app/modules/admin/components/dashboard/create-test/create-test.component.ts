@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { NzNotificationService } from 'ng-zorro-antd/notification';
 import { AdminService } from '../../../services/admin.service';
@@ -7,52 +7,83 @@ import { sharedImports } from '../../../../shared/auth/signup/shared/shared.modu
 
 @Component({
   selector: 'app-create-test',
-  imports: [
-   sharedImports
-  ],
   templateUrl: './create-test.component.html',
-  styleUrl: './create-test.component.css'
+  styleUrls: ['./create-test.component.css'],
+  standalone: true,
+  imports: [sharedImports]
 })
 export class CreateTestComponent {
-  constructor(private fb: FormBuilder,
-    private deviceService: AdminService,
-    private notifications: NzNotificationService,
-    private router: Router,
+  quizForm!: FormGroup;
 
-  ){}
+  constructor(
+    private fb: FormBuilder,
+    private adminService: AdminService,
+    private notification: NzNotificationService,
+    private router: Router
+  ) {}
 
-  testForm! : FormGroup;
-
-  ngOnInit(){
-    this.testForm = this.fb.group({
-      title:[null, Validators.required],
-      description: [null, [Validators.required]],
-      time: [null, [Validators.required]],
-    })
+  ngOnInit(): void {
+    this.quizForm = this.fb.group({
+      titulo: ['', Validators.required],
+      perguntas: this.fb.array([this.createQuestion()])
+    });
   }
 
-    submitForm(){
-      if(this.testForm.valid){
-        this.deviceService.createTest(this.testForm.value).subscribe(res=>{
-          this.notifications
-            .success(
-              'SUCESS',
-              'Quiz criado com sucesso.',
-              {nzDuration: 5000}
-            );
-            this.router.navigateByUrl("/admin/dashboard")
-      
-        }, error=> {
-          this.notifications
-            .error(
-              'ERROR',
-              `${error.error}`,
-              {nzDuration: 5000}
-            )
+  get perguntas(): FormArray {
+    return this.quizForm.get('perguntas') as FormArray;
+  }
+
+  // Retorna perguntas para o *ngFor no template (array de FormGroup)
+  getPerguntas(): FormGroup[] {
+    return this.perguntas.controls as FormGroup[];
+  }
+
+  createQuestion(): FormGroup {
+    return this.fb.group({
+      texto: ['', Validators.required],
+      opcoes: this.fb.array([
+        this.createOption(),
+        this.createOption(),
+        this.createOption(),
+        this.createOption()
+      ]),
+      correta: ['', Validators.required]
+    });
+  }
+
+  // Retorna as opções de uma pergunta como array para iterar no template
+  getOpcoes(perguntaIndex: number): FormGroup[] {
+    const opcoes = this.perguntas.at(perguntaIndex).get('opcoes') as FormArray;
+    return opcoes.controls as FormGroup[];
+  }
+
+  createOption(): FormGroup {
+    return this.fb.group({
+      texto: ['', Validators.required]
+    });
+  }
+
+  addQuestion(): void {
+    this.perguntas.push(this.createQuestion());
+  }
+
+  removeQuestion(index: number): void {
+    this.perguntas.removeAt(index);
+  }
+
+  submitForm(): void {
+    if (this.quizForm.valid) {
+      this.adminService.createQuizComPerguntas(this.quizForm.value).subscribe({
+        next: () => {
+          this.notification.success('Sucesso', 'Quiz criado com sucesso');
+          this.router.navigateByUrl('/admin/dashboard');
+        },
+        error: (err) => {
+          this.notification.error('Erro', err.message || 'Erro ao criar quiz');
         }
-      )
-      }
+      });
+    } else {
+      this.notification.error('Erro', 'Formulário inválido. Preencha todos os campos.');
     }
-
-
+  }
 }

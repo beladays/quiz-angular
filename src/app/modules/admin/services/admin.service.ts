@@ -2,33 +2,34 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
-const BASIC_URL = "http://localhost:8080/"; //URL DO
-
 @Injectable({
   providedIn: 'root'
 })
 export class AdminService {
+  private baseUrl = 'http://localhost:8000/dashboard'; // ajuste sua baseURL
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
-  createTest(testDto): Observable<any>{
-    return this.http.post(BASIC_URL + `api/test`, testDto);
+  // Buscar quizzes (com perguntas e respostas)
+  getAllTests(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/quizzes`);
   }
 
- getAllTest(): Observable<any>{
-    return this.http.get(BASIC_URL + `api/test`);
+  // Buscar perguntas e respostas de um quiz específico
+  getTestQuestions(testId: number): Observable<any> {
+    return this.http.get(`${this.baseUrl}/quizzes/${testId}`);
   }
 
-  addQuestionInTest(questionDto): Observable<any>{
-    return this.http.post(BASIC_URL + `api/test/quesion`, questionDto);
+  // Buscar histórico do usuário (resultados)
+  getTestResults(): Observable<any> {
+    return this.http.get(`${this.baseUrl}/historico`);
   }
 
-  
- getTestQuestions(id: number): Observable<any>{
-    return this.http.get(BASIC_URL + `api/test/${id}`);
+  // Criar quiz com perguntas e respostas (se implementado no backend)
+  createQuizComPerguntas(quizData: any): Observable<any> {
+    // Como no seu backend você tem posts separados para quiz, questions e answers,
+    // você terá que fazer chamadas separadas ou criar um endpoint que aceite o payload completo.
+    // Aqui deixo só um exemplo genérico (precisa ajustar backend para aceitar este post):
+    return this.http.post(`${this.baseUrl}/quizzes-completo`, quizData);
   }
-  getTestResults(): Observable<any>{
-    return this.http.get(BASIC_URL + `api/test/test-results`);
-  }
-
 }

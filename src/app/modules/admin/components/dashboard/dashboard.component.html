@@ -1,15 +1,18 @@
-<div class="main">
-    <div nz-row>
-        <div nz-col nzSpan="24" style="margin-bottom: 20px;">
-            <span style="margin: 20px;" *ngFor="let test of tests">
-                <nz-card [nzBordered]="true" class="test" nzTitle="{{test.title}}">
-                    <p><strong>Descrição: </strong>{{test.description}}</p>
+<div class="dashboard-container">
+  <h2>Lista de Quizzes</h2>
 
+  <div *ngIf="loading" class="loading">Carregando quizzes...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
 
-                    <button nz-button nzType="primary" routerLink="/admin/view-test{{test.id}}">Ver teste</button>
-                    <button nz-button nzType="primary" style="margin-right: 5px" routerLink="/admin/add-question/{{test.id}}">Adicionar pergunta</button>
-                </nz-card>
-            </span>
-        </div>
-    </div>
+  <ul *ngIf="!loading && !error && quizzes.length > 0" class="quiz-list">
+    <li *ngFor="let quiz of quizzes" class="quiz-item">
+      {{ quiz.titulo }}
+      <!-- <button (click)="editarQuiz(quiz.id)">Editar</button> -->
+      <!-- <button (click)="excluirQuiz(quiz.id)">Excluir</button> -->
+    </li>
+  </ul>
+
+  <div *ngIf="!loading && !error && quizzes.length === 0" class="empty">
+    Nenhum quiz encontrado.
+  </div>
 </div>

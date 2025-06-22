@@ -1,25 +1,36 @@
-<div class="bg">
-    <div class="parent">
-        <div class="child">
-            <form nz-form [formGroup]="testForm" class="login-form" (ngSubmit)="submitForm()">
-                <nz-form-label [nzNoColon]="true">Título</nz-form-label>
-                <nz-form-item>
-                    <nz-form-control nzErrorTip="Esta entrada é obrigatória!">
-                        <input type="text" nz-input formControlName="title" placeholder="Título">
-                    </nz-form-control>
-                </nz-form-item>
+<form [formGroup]="quizForm" (ngSubmit)="submitForm()">
+  <h2>Criar Quiz</h2>
 
-                <nz-form-label [nzNoColon]="true">Descrição</nz-form-label>
-                <nz-form-item>
-                    <nz-form-control nzErrorTip="Esta entrada é obrigatória!">
-                        <textarea rows="4" nz-input formControlName="description" placeholder="Descrição"></textarea>
-                    </nz-form-control>
-                </nz-form-item>
+  <label>Título</label>
+  <input formControlName="titulo" placeholder="Título do quiz" />
 
-                <div style="padding-bottom: 30px;">
-                    <button nz-button class="login-form-button login-form-margin" [nzType]="'primary'">Enviar</button>
-                </div>
-            </form>
+  <div formArrayName="perguntas">
+    <div *ngFor="let pergunta of getPerguntas(); let i = index" [formGroupName]="i" class="pergunta-container">
+      <h3>Pergunta {{ i + 1 }}</h3>
+
+      <label>Texto da pergunta</label>
+      <textarea formControlName="texto" placeholder="Digite a pergunta"></textarea>
+
+      <div formArrayName="opcoes">
+        <div *ngFor="let opcao of getOpcoes(i); let j = index" [formGroupName]="j">
+          <label>Opção {{ 'ABCD'[j] }}</label>
+          <input formControlName="texto" placeholder="Texto da opção" />
         </div>
+      </div>
+
+      <label>Resposta Correta</label>
+      <select formControlName="correta">
+        <option [value]="0">A</option>
+        <option [value]="1">B</option>
+        <option [value]="2">C</option>
+        <option [value]="3">D</option>
+      </select>
+
+      <button type="button" (click)="removeQuestion(i)" *ngIf="getPerguntas().length > 1">Remover Pergunta</button>
+      <hr />
     </div>
-</div>
+  </div>
+
+  <button type="button" (click)="addQuestion()">Adicionar Pergunta</button>
+  <button type="submit" [disabled]="!quizForm.valid">Criar Quiz</button>
+</form>

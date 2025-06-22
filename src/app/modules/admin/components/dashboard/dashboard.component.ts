@@ -1,59 +1,44 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { AdminService } from '../../services/admin.service';
 import { sharedImports } from '../../../shared/auth/signup/shared/shared.module';
-import { NzNotificationService } from 'ng-zorro-antd/notification';
-import { AdminService } from '../../services/admin.service'; //retirar se for testar!
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
-  imports: [
-    sharedImports
-  ],
   templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css'
+  styleUrls: ['./dashboard.component.css'],
+    imports: [
+      sharedImports,
+      CommonModule
+
+    ]
+  
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
+  quizzes: any[] = [];
+  loading = false;
+  error = '';
 
-  tests= []; 
-  //  tests: any[] = []; //teste!
+  constructor(private adminService: AdminService) {}
 
-  constructor(private notification: NzNotificationService,
-    private testService: AdminService
-  ){}
-
-  /* teste!
- constructor(private notification: NzNotificationService) {} //teste!
-
-  ngOnInit(){
-    this.getAllTest();
+  ngOnInit(): void {
+    this.loadQuizzes();
   }
-*/
 
-  getAllTest(){
-    this.testService.getAllTest().subscribe(res=>{
-      this.tests = res;
-    }, error=>{
-      this.notification
-      .error(
-        'ERROR',
-        `Algo deu errado. Tente novamente`,
-        {nzDuration: 5000}
-      )
-    }
-  )
+  loadQuizzes(): void {
+    this.loading = true;
+    this.error = '';
 
-/* teste!
-  getAllTest() {
-    this.tests = [ //teste!
-      { id: 1, name: 'Quiz Matemática', totalQuestions: 10, createdAt: '2025-01-10' },
-      { id: 2, name: 'Quiz História', totalQuestions: 15, createdAt: '2025-02-18' },
-      { id: 3, name: 'Quiz Geografia', totalQuestions: 20, createdAt: '2025-03-05' }
-    ];
-
-
-    this.notification.success('Sucesso', 'Dados carregados localmente');     
-  }
-}
-*/
-
+    this.adminService.getAllTests().subscribe({
+      next: (res) => {
+        // seu backend responde com { quizzes: [...] }
+        this.quizzes = res.quizzes || [];
+        this.loading = false;
+      },
+      error: (err) => {
+        this.error = err.message || 'Erro ao carregar quizzes';
+        this.loading = false;
+      }
+    });
   }
 }

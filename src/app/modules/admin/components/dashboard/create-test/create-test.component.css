@@ -1,38 +1,74 @@
-.child{
-    padding: 50px;
-    width: 60%;
-    margin: auto;
-    background-color: white;
-    box-shadow: 1px 1px 15px -7px rgba (0, 0, 0, 0.1);
-    border-radius: 5px;
+form {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 1rem;
+  background: #f9f9f9;
+  border-radius: 8px;
+  font-family: Arial, sans-serif;
 }
 
-nz-form-control{
-    min-width: 280px;
+h2 {
+  text-align: center;
+  margin-bottom: 1rem;
 }
 
-.parent {
-    margin-top: 40px;
+label {
+  font-weight: 600;
+  display: block;
+  margin: 0.5rem 0 0.25rem;
 }
 
-.login-form-button{
-    width: 30%;
-    float: right;
-    margin-top: 20px;
-    margin-bottom: 20px;
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 0.5rem;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-size: 1rem;
+  box-sizing: border-box;
 }
 
-button{
-    background-color: #001529;
-    border: none;
+textarea {
+  resize: vertical;
+  min-height: 60px;
 }
 
-nz-divider{
-    padding-bottom: 10px;
+.pergunta-container {
+  border: 1px solid #ccc;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+  border-radius: 6px;
+  background-color: #fff;
 }
 
-.preview{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.pergunta-container h3 {
+  margin-top: 0;
+}
+
+button {
+  cursor: pointer;
+  background-color: #1890ff;
+  border: none;
+  color: white;
+  padding: 0.5rem 1rem;
+  margin-top: 1rem;
+  border-radius: 4px;
+  font-weight: 600;
+  transition: background-color 0.3s ease;
+}
+
+button:hover:not(:disabled) {
+  background-color: #40a9ff;
+}
+
+button:disabled {
+  background-color: #ccc;
+  cursor: not-allowed;
+}
+
+hr {
+  margin-top: 1rem;
+  border: none;
+  border-top: 1px solid #eee;
 }
