@@ -73,7 +73,7 @@ export class CreateTestComponent {
 
   submitForm(): void {
     if (this.quizForm.valid) {
-      this.adminService.createQuizComPerguntas(this.quizForm.value).subscribe({
+     this.adminService.createQuiz(this.quizForm.value).subscribe({
         next: () => {
           this.notification.success('Sucesso', 'Quiz criado com sucesso');
           this.router.navigateByUrl('/admin/dashboard');

@@ -31,7 +31,6 @@ export class DashboardComponent implements OnInit {
 
     this.adminService.getAllTests().subscribe({
       next: (res) => {
-        // seu backend responde com { quizzes: [...] }
         this.quizzes = res.quizzes || [];
         this.loading = false;
       },
