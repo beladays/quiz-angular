@@ -20,10 +20,11 @@
 
       <label>Resposta Correta</label>
       <select formControlName="correta">
-        <option [value]="0">A</option>
-        <option [value]="1">B</option>
-        <option [value]="2">C</option>
-        <option [value]="3">D</option>
+        <option [ngValue]="0">A</option>
+        <option [ngValue]="1">B</option>
+        <option [ngValue]="2">C</option>
+        <option [ngValue]="3">D</option>
+
       </select>
 
       <button type="button" (click)="removeQuestion(i)" *ngIf="getPerguntas().length > 1">Remover Pergunta</button>

@@ -71,19 +71,36 @@ export class CreateTestComponent {
     this.perguntas.removeAt(index);
   }
 
-  submitForm(): void {
-    if (this.quizForm.valid) {
-     this.adminService.createQuiz(this.quizForm.value).subscribe({
-        next: () => {
-          this.notification.success('Sucesso', 'Quiz criado com sucesso');
-          this.router.navigateByUrl('/admin/dashboard');
-        },
-        error: (err) => {
-          this.notification.error('Erro', err.message || 'Erro ao criar quiz');
-        }
-      });
-    } else {
-      this.notification.error('Erro', 'Formulário inválido. Preencha todos os campos.');
-    }
+submitForm(): void {
+  if (this.quizForm.valid) {
+    const formValue = this.quizForm.value;
+
+    const perguntasTransformadas = formValue.perguntas.map((p: any) => {
+      return {
+        texto: p.texto,
+        opcoes: p.opcoes.map((opcao: any, index: number) => ({
+          texto: opcao.texto,
+          correta: index === p.correta // marca a correta
+        }))
+      };
+    });
+
+    const payload = {
+      titulo: formValue.titulo,
+      perguntas: perguntasTransformadas
+    };
+
+    this.adminService.createQuiz(payload).subscribe({
+      next: () => {
+        this.notification.success('Sucesso', 'Quiz criado com sucesso');
+        this.router.navigateByUrl('/admin/dashboard');
+      },
+      error: (err) => {
+        this.notification.error('Erro', err.message || 'Erro ao criar quiz');
+      }
+    });
+  } else {
+    this.notification.error('Erro', 'Formulário inválido. Preencha todos os campos.');
   }
+}
 }

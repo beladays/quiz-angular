@@ -6,9 +6,12 @@
 
   <ul *ngIf="!loading && !error && quizzes.length > 0" class="quiz-list">
     <li *ngFor="let quiz of quizzes" class="quiz-item">
-      {{ quiz.titulo }}
-      <!-- <button (click)="editarQuiz(quiz.id)">Editar</button> -->
-      <!-- <button (click)="excluirQuiz(quiz.id)">Excluir</button> -->
+      <span class="quiz-title">{{ quiz.titulo }}</span>
+      <div class="quiz-actions">
+        <button nz-button nzType="primary" (click)="openTest(quiz.id)">Ver</button>
+        <button nz-button nzType="default" (click)="editQuiz(quiz.id)">Editar</button>
+        <button nz-button nzType="default" (click)="removeQuiz(quiz.id)">Remover</button>
+      </div>
     </li>
   </ul>
 

@@ -1,14 +1,17 @@
-<div class="main">
-    <div nz-row>
-        <div nz-col nzSpan="24" style="margin-bottom: 20px;">
-            <span style="margin: 20px;" *ngFor="let test of tests">
-                <nz-card [nzBordered]="true" class="test" nzTitle="{{test.title}}">
-                    <p><strong>Descrição: </strong>{{test.description}}</p>
+<div class="user-dashboard">
+  <h2>Quizzes Disponíveis</h2>
 
+  <div *ngIf="loading" class="loading">Carregando quizzes...</div>
+  <div *ngIf="error" class="error">{{ error }}</div>
 
-                    <button nz-button nzType="primary" routerLink="/user/take-test/{{test.id}}">Começar teste</button>
-                </nz-card>
-            </span>
-        </div>
-    </div>
+  <div *ngIf="!loading && !error && tests.length === 0" class="empty">
+    Nenhum quiz disponível.
+  </div>
+
+  <ul class="quiz-list" *ngIf="tests.length > 0">
+    <li *ngFor="let test of tests" class="quiz-item">
+      {{ test.titulo }}
+      <button (click)="takeTest(test.id)">Responder</button>
+    </li>
+  </ul>
 </div>

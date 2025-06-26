@@ -64,4 +64,11 @@ export class AdminService {
       headers: this.getHeaders()
     });
   }
+
+  // Atualizar quiz existente
+  updateQuiz(id: number, quizData: any): Observable<any> {
+    return this.http.put(`${this.baseUrl}/quizzes/${id}`, quizData, {
+      headers: this.getHeaders()
+    });
+  }
 }

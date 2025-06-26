@@ -1,58 +1,42 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { TestService } from '../../services/test.service';
+import { Router } from '@angular/router';
 import { sharedImports } from '../../../shared/auth/signup/shared/shared.module';
-import { NzNotificationService } from 'ng-zorro-antd/notification';
-import { TestService } from '../../services/test.service'; //se for testar retirar!
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-dashboard',
-  standalone: true,
-  imports: [
-    sharedImports
-  ],
   templateUrl: './dashboard.component.html',
-  styleUrl: './dashboard.component.css'
+  styleUrls: ['./dashboard.component.css'],
+  standalone: true,
+  imports: [sharedImports, CommonModule]
 })
-export class DashboardComponent {
+export class DashboardComponent implements OnInit {
+  tests: any[] = [];
+  loading = false;
+  error = '';
 
-    tests= [];
+  constructor(private testService: TestService, private router: Router) {}
 
-    constructor(private notification: NzNotificationService,
-      private testService: TestService
-    ){}
-
-   /* teste
-     constructor(private notification: NzNotificationService) {} //teste!
-
-    ngOnInit(){
-    this.getAllTest();
+  ngOnInit(): void {
+    this.fetchTests();
   }
-*/
-  getAllTest(){
-    this.testService.getAllTest().subscribe(res=>{
-     this.tests = res;
-    }, error=>{
-      this.notification
-      .error(
-        'ERROR',
-       `Algo deu errado. Tente novamente`,
-        {nzDuration: 5000}
-      )
+
+fetchTests(): void {
+  this.loading = true;
+  this.testService.getAllTest().subscribe({
+    next: (res) => {
+      this.tests = Array.isArray(res) ? res : [];
+      this.loading = false;
+    },
+    error: (err) => {
+      this.error = 'Erro ao carregar quizzes.';
+      this.loading = false;
     }
-  )
-  }
+  });
 }
 
-/* teste:
-  getAllTest() { 
-    this.tests = [
-      { id: 1, name: 'Quiz Matemática', totalQuestions: 10, description: 'Teste sobre matemática básica' },
-      { id: 2, name: 'Quiz História', totalQuestions: 15, description: 'Teste sobre história mundial' },
-      { id: 3, name: 'Quiz Geografia', totalQuestions: 20, description: 'Teste sobre geografia global' }
-    ];
-
-    this.notification.success('Sucesso', 'Dados carregados localmente'); //teste!
+  takeTest(id: number): void {
+    this.router.navigate(['/user/take-test', id]);
   }
 }
-*/
-
-

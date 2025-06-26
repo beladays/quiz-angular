@@ -1,0 +1,18 @@
+<div class="edit-quiz-container" *ngIf="!loading; else loadingTpl">
+  <h2>Editar Quiz</h2>
+
+  <form [formGroup]="quizForm" (ngSubmit)="submit()">
+    <label for="titulo">Título *</label>
+    <input id="titulo" formControlName="titulo" />
+
+
+    <div class="buttons">
+      <button type="submit" [disabled]="quizForm.invalid">Salvar</button>
+      <button type="button" (click)="cancel()">Cancelar</button>
+    </div>
+  </form>
+</div>
+
+<ng-template #loadingTpl>
+  <p>Carregando...</p>
+</ng-template>
