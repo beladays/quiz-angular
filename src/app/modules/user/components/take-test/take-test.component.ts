@@ -1,69 +1,77 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Router } from '@angular/router';
-import { NzMessageService } from 'ng-zorro-antd/message';
 import { TestService } from '../../services/test.service';
-import { UserStorageService } from '../../../shared/auth/services/user-storage.service';
 import { sharedImports } from '../../../shared/auth/signup/shared/shared.module';
 import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-take-test',
-  standalone: true,
+   standalone: true,
  
-   imports: [sharedImports, 
+   imports: [
+    sharedImports,
+    CommonModule,
     ],
   templateUrl: './take-test.component.html',
-  styleUrl: './take-test.component.css'
-  
+  styleUrls: ['./take-test.component.css'],
 })
-export class TakeTestComponent {
+export class TakeTestComponent implements OnInit {
   quizId!: number;
   quiz: any;
   answers: { [key: number]: number } = {};
+  resultado: { total: number; acertos: number; erros: number; score: number } | null = null;
 
   constructor(private route: ActivatedRoute, private testService: TestService) {}
 
- ngOnInit(): void {
-  this.quizId = +this.route.snapshot.paramMap.get('id')!;
-  this.loadQuiz();
-}
+  ngOnInit(): void {
+    this.quizId = +this.route.snapshot.paramMap.get('id')!;
+    this.loadQuiz();
+  }
 
-loadQuiz(): void {
-  this.testService.getPublicTestQuestions(this.quizId).subscribe({
-    next: (res) => {
-      this.quiz = res.quiz; // pois rota pública retorna { quiz: ... }
-    },
-    error: (err) => {
-      console.error('Erro ao carregar quiz', err);
-    }
-  });
-}
+  loadQuiz(): void {
+    this.testService.getPublicTestQuestions(this.quizId).subscribe({
+      next: (res) => {
+        this.quiz = res.quiz;
+      },
+      error: (err) => {
+        console.error('Erro ao carregar quiz', err);
+      }
+    });
+  }
 
   selecionarResposta(questionId: number, answerId: number): void {
     this.answers[questionId] = answerId;
   }
 
-resultado: { total: number; acertos: number; erros: number; score: string } | null = null;
-
-enviar(): void {
-  const respostasFormatadas = Object.entries(this.answers).map(([questionId, answerId]) => ({
-    question_id: Number(questionId),
-    answer_id: answerId
-  }));
-
-  const payload = {
-    quiz_id: this.quizId,
-    respostas: respostasFormatadas
-  };
-
-  this.testService.submitTest(payload).subscribe({
-    next: (res) => {
-      this.resultado = res.resultado; // Salva o resultado pra mostrar na tela
-    },
-    error: (err) => {
-      console.error('Erro ao enviar respostas', err);
-      alert('Erro ao enviar respostas. Tente novamente.');
+  enviar(): void {
+    // Verifica se todas perguntas estão respondidas
+    if (Object.keys(this.answers).length !== this.quiz.questions.length) {
+      alert('Por favor, responda todas as perguntas antes de enviar.');
+      return;
     }
-  });
-}}
+
+    const respostasFormatadas = Object.entries(this.answers).map(([questionId, answerId]) => ({
+      question_id: Number(questionId),
+      answer_id: answerId
+    }));
+
+    const payload = {
+      quiz_id: this.quizId,
+      respostas: respostasFormatadas
+    };
+
+    this.testService.submitTest(payload).subscribe({
+      next: (res) => {
+        this.resultado = res.resultado; // Espera que backend retorne { total, acertos, erros, score }
+        // Scroll suave para o resultado
+        setTimeout(() => {
+          document.querySelector('.resultado')?.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      },
+      error: (err) => {
+        console.error('Erro ao enviar respostas', err);
+        alert('Erro ao enviar respostas. Tente novamente.');
+      }
+    });
+  }
+}

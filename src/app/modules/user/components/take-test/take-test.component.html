@@ -1,7 +1,7 @@
 <div class="take-test">
   <h2>{{ quiz?.titulo }}</h2>
 
-  <form>
+  <form (ngSubmit)="enviar()">
     <div class="question" *ngFor="let question of quiz?.questions">
       <h3>{{ question.texto }}</h3>
 
@@ -12,20 +12,22 @@
             name="question{{ question.id }}"
             [value]="answer.id"
             (change)="selecionarResposta(question.id, answer.id)"
+            [checked]="answers[question.id] === answer.id"
+            required
           />
           {{ answer.texto }}
         </label>
       </div>
     </div>
 
-    <button type="button" (click)="enviar()">Enviar Respostas</button>
-<div *ngIf="resultado" class="resultado">
-  <h3>Resultado</h3>
-  <p>Total de perguntas: {{ resultado.total }}</p>
-  <p>Acertos: {{ resultado.acertos }}</p>
-  <p>Erros: {{ resultado.erros }}</p>
-  <p>Score: {{ resultado.score }}</p>
-</div>
-
+    <button type="submit">Enviar Respostas</button>
   </form>
+
+  <div *ngIf="resultado" class="resultado">
+    <h3>Resultado</h3>
+    <p>Total de perguntas: {{ resultado.total }}</p>
+    <p>Acertos: {{ resultado.acertos }}</p>
+    <p>Erros: {{ resultado.erros }}</p>
+    <p>Score: {{ resultado.score }}%</p>
+  </div>
 </div>

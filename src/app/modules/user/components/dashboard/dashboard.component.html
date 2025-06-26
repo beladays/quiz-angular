@@ -8,10 +8,10 @@
     Nenhum quiz disponível.
   </div>
 
-  <ul class="quiz-list" *ngIf="tests.length > 0">
-    <li *ngFor="let test of tests" class="quiz-item">
-      {{ test.titulo }}
+  <div class="quiz-grid" *ngIf="tests.length > 0">
+    <div class="quiz-card" *ngFor="let test of tests">
+      <h3>{{ test.titulo }}</h3>
       <button (click)="takeTest(test.id)">Responder</button>
-    </li>
-  </ul>
+    </div>
+  </div>
 </div>
