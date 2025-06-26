@@ -1,74 +1,109 @@
+/* Importar fonte Poppins do Google Fonts (coloque no index.html ou Angular.json) */
+/* <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet"> */
+
 form {
   max-width: 800px;
-  margin: 0 auto;
-  padding: 1rem;
-  background: #f9f9f9;
-  border-radius: 8px;
-  font-family: Arial, sans-serif;
+  margin: 2rem auto;
+  padding: 1.5rem 2rem;
+  background: #f4f0fa; /* lilás muito claro */
+  border-radius: 12px;
+  font-family: 'Poppins', Arial, sans-serif;
+  box-shadow: 0 4px 15px rgba(166, 142, 230, 0.3);
 }
 
 h2 {
   text-align: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
+  color: #7e57c2; /* lilás médio */
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  font-size: 2rem;
+  letter-spacing: 1px;
 }
 
 label {
   font-weight: 600;
+  color: #5e4290; /* roxo escuro */
   display: block;
-  margin: 0.5rem 0 0.25rem;
+  margin: 0.75rem 0 0.25rem;
+  font-size: 1rem;
 }
 
 input,
 textarea,
 select {
   width: 100%;
-  padding: 0.5rem;
-  border: 1px solid #ddd;
-  border-radius: 4px;
+  padding: 0.6rem 0.8rem;
+  border: 1.8px solid #c1b8e3; /* lilás claro */
+  border-radius: 6px;
   font-size: 1rem;
+  font-family: 'Poppins', sans-serif;
   box-sizing: border-box;
+  background-color: #faf8ff;
+  color: #4b3b8a;
+  transition: border-color 0.3s ease;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #7e57c2; /* lilás médio */
+  outline: none;
+  background-color: #f0eaff;
 }
 
 textarea {
   resize: vertical;
-  min-height: 60px;
+  min-height: 80px;
+  font-family: 'Poppins', sans-serif;
 }
 
 .pergunta-container {
-  border: 1px solid #ccc;
-  padding: 1rem;
-  margin-bottom: 1.5rem;
-  border-radius: 6px;
-  background-color: #fff;
+  border: 1.5px solid #c8bff1;
+  padding: 1rem 1.2rem;
+  margin-bottom: 1.8rem;
+  border-radius: 10px;
+  background-color: #f9f7ff;
+  box-shadow: inset 0 0 8px rgba(126, 87, 194, 0.1);
 }
 
 .pergunta-container h3 {
   margin-top: 0;
+  font-weight: 600;
+  color: #6f4bb8;
+  font-family: 'Poppins', sans-serif;
 }
 
 button {
-  cursor: pointer;
-  background-color: #1890ff;
   border: none;
-  color: white;
-  padding: 0.5rem 1rem;
-  margin-top: 1rem;
-  border-radius: 4px;
-  font-weight: 600;
-  transition: background-color 0.3s ease;
+  background: linear-gradient(90deg, #7e57c2, #a68ee6);
+  color: #fff;
+  border-radius: 12px;
+  padding: 10px 0;
+  margin-top: 20px;
+  width: 100%;
+  height: 45px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  box-shadow: 0 4px 12px rgba(126, 87, 194, 0.5);
+  transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
 button:hover:not(:disabled) {
-  background-color: #40a9ff;
+  background: linear-gradient(90deg, #a68ee6, #7e57c2);
+  box-shadow: 0 6px 15px rgba(126, 87, 194, 0.8);
 }
 
 button:disabled {
-  background-color: #ccc;
+  background-color: #c4bbe0;
   cursor: not-allowed;
+  box-shadow: none;
 }
 
 hr {
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   border: none;
-  border-top: 1px solid #eee;
+  border-top: 1px solid #ddd6ff;
 }

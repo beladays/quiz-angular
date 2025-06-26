@@ -5,6 +5,7 @@ import { UserStorageService } from './modules/shared/auth/services/user-storage.
 import { AuthStateService } from './modules/shared/auth/services/auth-state.service';
 import { DemoNgZorroAntdModules } from './DemoNgZorroAntdModules';
 import { sharedImports } from './modules/shared/auth/signup/shared/shared.module';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +14,8 @@ import { sharedImports } from './modules/shared/auth/signup/shared/shared.module
     RouterOutlet,
     RouterModule,
     sharedImports,
-    DemoNgZorroAntdModules
+    DemoNgZorroAntdModules,
+    CommonModule
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
@@ -22,6 +24,7 @@ export class AppComponent implements OnInit {
   isUserLoggedIn = false;
   isAdminLoggedIn = false;
   isCheckingAuth = true;
+  menuAtivo = false;
 
   constructor(
     private authStateService: AuthStateService,

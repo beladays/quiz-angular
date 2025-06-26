@@ -1,45 +1,48 @@
-
 <div *ngIf="!isCheckingAuth">
-
+  <!-- Menu padrão (usuário não logado) -->
   <ng-container *ngIf="!isUserLoggedIn && !isAdminLoggedIn">
     <nz-header class="main-header" nz-row>
-      <div>
-        <a class="logo" routerLink="/login">Quiz da Galera</a>
-      </div>
-      <div class="nav-links">
+      <div class="logo" routerLink="/login">Quiz da Galera</div>
+
+      <!-- Botão hamburguer -->
+   <i nz-icon nzType="menu" nzTheme="outline" class="menu" (click)="menuAtivo = !menuAtivo"></i>
+   
+      <div class="nav-links" [ngClass]="{ 'activate': menuAtivo }">
         <a nz-button nzType="link" routerLink="/register">Sign Up</a>
         <a nz-button nzType="link" routerLink="/login">Login</a>
       </div>
     </nz-header>
   </ng-container>
 
+  <!-- Menu Admin -->
   <ng-container *ngIf="isAdminLoggedIn">
     <nz-header class="main-header" nz-row>
-      <div>
-        <a class="logo" routerLink="/admin/dashboard">Quiz da Galera</a>
-      </div>
-      <div class="nav-links">
-        <a nz-button nzType="link" routerLink="/admin/dashboard">Quizes</a>
+      <div class="logo" routerLink="/admin/dashboard">Quiz da Galera</div>
+
+      <div class="menu" (click)="menuAtivo = !menuAtivo">☰</div>
+
+      <div class="nav-links" [ngClass]="{ 'activate': menuAtivo }">
+        <a nz-button nzType="link" routerLink="/admin/dashboard">Quizzes</a>
         <a nz-button nzType="link" routerLink="/admin/create-test">Criar Quiz</a>
         <a nz-button nzType="link" (click)="logout()">Logout</a>
       </div>
     </nz-header>
   </ng-container>
 
-
+  <!-- Menu Usuário -->
   <ng-container *ngIf="isUserLoggedIn">
     <nz-header class="main-header" nz-row>
-      <div>
-        <a class="logo" routerLink="/user/dashboard">Quiz da Galera</a>
-      </div>
-      <div class="nav-links">
-        <a nz-button nzType="link" routerLink="/user/dashboard">Quizes</a>
+      <div class="logo" routerLink="/user/dashboard">Quiz da Galera</div>
+
+      <div class="menu" (click)="menuAtivo = !menuAtivo">☰</div>
+
+      <div class="nav-links" [ngClass]="{ 'activate': menuAtivo }">
+        <a nz-button nzType="link" routerLink="/user/dashboard">Quizzes</a>
         <a nz-button nzType="link" routerLink="/user/perfil">Perfil</a>
         <a nz-button nzType="link" (click)="logout()">Logout</a>
       </div>
     </nz-header>
   </ng-container>
-
 
   <nz-content>
     <router-outlet></router-outlet>

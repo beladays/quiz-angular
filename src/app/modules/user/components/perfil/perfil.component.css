@@ -1,49 +1,102 @@
+/* Fonte Poppins (adicione no index.html):
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet" />
+*/
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(180deg, #e2d6f9 0%, #c7e3e7 100%);
+  color: #4b3b8a;
+}
+
+h3 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  color: #5a3696;
+}
+
+/* Bloco da prova/quiz */
+.take-test {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 2rem;
+  border: 1px solid #d9cfff;
+  border-radius: 12px;
+  background-color: #f8f4ff; /* lilás muito claro */
+  box-shadow: 0 4px 10px rgba(166, 142, 230, 0.2);
+}
+
+.take-test h2 {
+  text-align: center;
+  color: #7e57c2;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+/* Se usado dentro do componente nz-typography */
+.parent .child nz-typography h2 {
+  color: #7e57c2;
+  text-align: center;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  margin-bottom: 1rem;
+}
+
 .parent {
   display: flex;
   justify-content: center;
   padding: 24px;
-  background-color: #f0f2f5;
+  background: linear-gradient(180deg, #e2d6f9 0%, #c7e3e7 100%);
   min-height: 100vh;
   box-sizing: border-box;
 }
 
 .child {
-  background: #fff;
-  border-radius: 8px;
-  padding: 24px;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 32px;
   width: 100%;
   max-width: 800px;
-  box-shadow: 0 4px 12px rgb(0 0 0 / 0.1);
+  box-shadow: 0 6px 18px rgba(126, 87, 194, 0.2);
   box-sizing: border-box;
 }
 
 .user-info {
-  margin: 16px 0 32px 0;
+  margin: 24px 0 32px;
   display: flex;
   gap: 24px;
-  align-items: center;
+  align-items: flex-start;
   flex-wrap: wrap;
 }
 
 .user-details p {
-  margin: 4px 0;
+  margin: 6px 0;
   font-size: 16px;
-  color: #444;
+  color: #4e3d8c;
+  font-weight: 500;
 }
 
-nz-typography h2, nz-typography h3 {
-  color: #001529;
+nz-typography h2,
+nz-typography h3 {
+  color: #7e57c2;
   margin-bottom: 12px;
   font-weight: 600;
+  font-family: 'Poppins', sans-serif;
 }
 
 nz-table {
   margin-top: 16px;
+  border-radius: 8px;
+  overflow: hidden;
 }
 
 p {
-  color: #999;
+  color: #7d6ca9;
   font-style: italic;
   margin-top: 32px;
   text-align: center;
+  font-size: 0.95rem;
 }
