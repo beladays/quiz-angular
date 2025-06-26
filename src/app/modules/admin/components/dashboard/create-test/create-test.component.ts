@@ -33,7 +33,6 @@ export class CreateTestComponent {
     return this.quizForm.get('perguntas') as FormArray;
   }
 
-  // Retorna perguntas para o *ngFor no template (array de FormGroup)
   getPerguntas(): FormGroup[] {
     return this.perguntas.controls as FormGroup[];
   }
@@ -51,7 +50,6 @@ export class CreateTestComponent {
     });
   }
 
-  // Retorna as opções de uma pergunta como array para iterar no template
   getOpcoes(perguntaIndex: number): FormGroup[] {
     const opcoes = this.perguntas.at(perguntaIndex).get('opcoes') as FormArray;
     return opcoes.controls as FormGroup[];

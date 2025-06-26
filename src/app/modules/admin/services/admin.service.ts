@@ -16,14 +16,14 @@ export class AdminService {
     return new HttpHeaders().set('Authorization', `Bearer ${token}`);
   }
 
-  // Buscar todos os quizzes com perguntas e respostas
+  // Busca todos os quizzes 
   getAllTests(): Observable<any> {
     return this.http.get(`${this.baseUrl}/quizzes`, {
       headers: this.getHeaders()
     });
   }
 
-  // Buscar um quiz específico (com perguntas e respostas)
+  // Busca um quiz específico 
   getTestQuestions(testId: number): Observable<any> {
     return this.http.get(`${this.baseUrl}/quizzes/${testId}`, {
       headers: this.getHeaders()

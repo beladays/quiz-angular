@@ -40,8 +40,7 @@ export class EditQuizComponent implements OnInit {
   initForm(): void {
     this.quizForm = this.fb.group({
       titulo: ['', Validators.required],
-      descricao: ['']
-      // adicione outros campos que o quiz tenha
+
     });
   }
 

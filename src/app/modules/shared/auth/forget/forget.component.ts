@@ -38,7 +38,7 @@ export class ForgetComponent {
 
     this.loading = true;
 
-    // Simula envio para back-end
+
     setTimeout(() => {
       this.loading = false;
       this.notification.success('Sucesso', 'Instruções para recuperação de senha foram enviadas para seu e-mail.');

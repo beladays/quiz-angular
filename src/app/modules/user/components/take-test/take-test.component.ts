@@ -59,11 +59,10 @@ export class TakeTestComponent implements OnInit {
       quiz_id: this.quizId,
       respostas: respostasFormatadas
     };
-
+//mostra resultado logo dps q conclui o quiz
     this.testService.submitTest(payload).subscribe({
       next: (res) => {
-        this.resultado = res.resultado; // Espera que backend retorne { total, acertos, erros, score }
-        // Scroll suave para o resultado
+        this.resultado = res.resultado; 
         setTimeout(() => {
           document.querySelector('.resultado')?.scrollIntoView({ behavior: 'smooth' });
         }, 100);

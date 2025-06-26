@@ -18,10 +18,10 @@ import { sharedImports } from './modules/shared/auth/signup/shared/shared.module
   templateUrl: './app.component.html',
   styleUrl: './app.component.css'
 })
-
 export class AppComponent implements OnInit {
   isUserLoggedIn = false;
   isAdminLoggedIn = false;
+  isCheckingAuth = true;
 
   constructor(
     private authStateService: AuthStateService,
@@ -33,12 +33,13 @@ export class AppComponent implements OnInit {
       this.updateLoginFlags();
     });
 
-    this.updateLoginFlags();
+    this.updateLoginFlags(); //verifica 1
   }
 
   updateLoginFlags() {
-   this.isUserLoggedIn = UserStorageService.isUserLoggedIn();
+    this.isUserLoggedIn = UserStorageService.isUserLoggedIn();
     this.isAdminLoggedIn = UserStorageService.isAdminLoggedIn();
+    this.isCheckingAuth = false; // nav
   }
 
   logout() {
