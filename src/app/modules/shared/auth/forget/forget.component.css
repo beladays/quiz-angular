@@ -1,16 +1,83 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+
+/* Fundo com gradiente e preenchimento total da tela */
+body {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #e2d6f9 0%, #c7e3e7 100%);
+
+
+}
+
+
+
+
+
+
 .forget-container {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 80vh;
   background-color: #f0f2f5;
   padding: 20px;
+ 
+  width: 100%;
+  height: 91vh;
+  position: relative;
+  background: linear-gradient(180deg, #e2d6f9 0%, #c7e3e7 100%);
+
+
+
+
 }
+
 
 .forget-card {
   width: 400px;
   padding: 20px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
   background: #fff;
+}
+
+
+button {
+  border: none;
+  background: #a68ee6;
+  color: #fff;
+  border-radius: 8px;
+  padding: px;
+  margin-top: 15px;
+  height: 40px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+
+
+}
+
+
+:host ::ng-deep .forget-card .ant-card-head-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #6a7ba2;
+  margin-bottom: 20px;
+}
+
+
+input {
+
+
+  margin-bottom: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  font-size: 1rem;
+
+
 }
