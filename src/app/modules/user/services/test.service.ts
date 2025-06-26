@@ -33,14 +33,6 @@ export class TestService {
     });
   }
 
-  // **Não usar essa rota para usuário normal, pois requer admin**
-  // Se quiser remover para evitar confusão:
-  // getTestQuestions(id: number): Observable<any> {
-  //   return this.http.get(`${this.baseUrl}/quizzes/${id}`, {
-  //     headers: this.getHeaders()
-  //   });
-  // }
-
   submitTest(data: any): Observable<any> {
     return this.http.post(`${this.baseUrl}/responder-quiz`, data, {
       headers: this.getHeaders()
@@ -52,4 +44,10 @@ export class TestService {
       headers: this.getHeaders()
     });
   }
+
+getUserProfile() {
+  return this.http.get<{ usuario: { nome: string, email: string } }>(`${this.baseUrl}/usuario`, {
+    headers: this.getHeaders()
+  });
+}
 }

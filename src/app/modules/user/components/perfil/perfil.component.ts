@@ -1,8 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { NzTableModule } from 'ng-zorro-antd/table'; 
-import { NzAvatarModule } from 'ng-zorro-antd/avatar'; 
 import { NzTypographyModule } from 'ng-zorro-antd/typography'; 
+import { NzNotificationModule, NzNotificationService } from 'ng-zorro-antd/notification';
+import { TestService } from '../../services/test.service';
+import { NzTableModule } from 'ng-zorro-antd/table';
+import { NzAvatarModule } from 'ng-zorro-antd/avatar';
 
 @Component({
   selector: 'app-perfil',
@@ -11,20 +13,48 @@ import { NzTypographyModule } from 'ng-zorro-antd/typography';
     CommonModule,
     NzTableModule,
     NzAvatarModule,
-    NzTypographyModule
+    NzTypographyModule,
+    NzNotificationModule
   ],
   templateUrl: './perfil.component.html',
   styleUrls: ['./perfil.component.css']
 })
-export class PerfilComponent {
-  user = {
-    name: 'João Silva',
-    email: 'joao@example.com',
-    avatarUrl: 'https://i.pravatar.cc/150?img=3' // exemplo img
-  };
+export class PerfilComponent implements OnInit {
+  user = { name: '', email: '', avatarUrl: 'https://i.pravatar.cc/150?img=3' };
+  quizStats: any[] = [];
 
-  quizStats = [
-    { testName: 'Quiz de Matemática', totalQuestions: 10, correctAnswers: 8, percentage: 80 },
-    { testName: 'Quiz de História', totalQuestions: 15, correctAnswers: 12, percentage: 80 }
-  ];
-}
+  constructor(private testService: TestService, private notification: NzNotificationService) {}
+
+  ngOnInit() {
+    this.loadUser();
+    this.loadHistory();
+  }
+
+  loadUser() {
+    this.testService.getUserProfile().subscribe({
+      next: (res) => {
+        this.user.name = res.usuario.nome || 'Usuário';
+        this.user.email = res.usuario.email || '';
+      },
+      error: () => {
+        this.user.name = 'Usuário';
+        this.user.email = '';
+      }
+    });
+  }
+
+  loadHistory() {
+  this.testService.getMyTestResults().subscribe({
+  next: (res: any) => {
+    this.quizStats = res.historico.map((item: any) => ({
+      testName: item.quiz.titulo,
+      totalQuestions: item.quiz.questions ? item.quiz.questions.length : 0,
+      correctAnswers: Math.round((item.score / 100) * (item.quiz.questions ? item.quiz.questions.length : 0)),
+      percentage: typeof item.score === 'number' ? item.score.toFixed(1) : item.score
+    }));
+  },
+  error: () => {
+    this.notification.error('Erro', 'Não foi possível carregar o histórico');
+  }
+});
+  }}
