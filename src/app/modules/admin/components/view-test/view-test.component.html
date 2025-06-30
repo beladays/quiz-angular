@@ -1,15 +1,46 @@
 <div style="margin:auto; width: 80%;">
   <form>
     <div class="question" *ngFor="let question of questions">
-      <h3>{{ question.texto }}</h3>
-
-      <div *ngFor="let answer of question.answers">
-        <label>
-          <input type="radio" [name]="'question' + question.id" [value]="answer.id">
-          {{ answer.texto }}
-        </label>
-      </div>
       
+      <!-- Visualização normal -->
+      <div *ngIf="editingQuestionId !== question.id">
+        <h3>{{ question.texto }}</h3>
+
+        <div *ngFor="let answer of question.answers">
+          <label
+            [ngClass]="{
+              'correta-answer': answer.correta,
+              'errada-answer': !answer.correta
+            }"
+          >
+            <input
+              type="radio"
+              [name]="'question' + question.id"
+              [value]="answer.id"
+              [disabled]="true"
+              [checked]="answer.correta"
+            />
+            {{ answer.texto }}
+          </label>
+        </div>
+
+        <button type="button" (click)="startEditing(question.id)">Editar</button>
+      </div>
+
+      <!-- Modo edição -->
+      <div *ngIf="editingQuestionId === question.id">
+        <app-edit-quiz
+          [question]="question"
+          (save)="atualizarPergunta($event)"
+          (cancel)="editingQuestionId = null"
+        ></app-edit-quiz>
+      </div>
+
     </div>
   </form>
+
+  <!-- Botão de voltar ao dashboard -->
+  <div style="margin-top: 30px; text-align: center;">
+    <button routerLink="/admin/dashboard">Voltar</button>
+  </div>
 </div>

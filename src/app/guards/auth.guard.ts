@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
+import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { NzMessageService } from 'ng-zorro-antd/message';
 import { UserStorageService } from '../modules/shared/auth/services/user-storage.service';
 
@@ -8,17 +8,19 @@ import { UserStorageService } from '../modules/shared/auth/services/user-storage
 })
 export class AuthGuard implements CanActivate {
 
-  constructor(private message: NzMessageService) {}
+  constructor(private message: NzMessageService,
+    private router: Router,
+  ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
     const user = UserStorageService.getUser();
 
     if (user && user.token) {
-      return true; // Libera acesso
+      return true; 
     }
 
     this.message.warning('Você precisa estar logado para acessar essa página.');
-    
+    this.router.navigate(['/login']);
     return false; 
   }
 }

@@ -2,7 +2,14 @@
   <h2>{{ quiz?.titulo }}</h2>
 
   <form (ngSubmit)="enviar()">
-    <div class="question" *ngFor="let question of quiz?.questions">
+    <div
+      class="question"
+      *ngFor="let question of quiz?.questions"
+      [ngClass]="{
+        'pergunta-correta': resultado && isPerguntaCorreta(question.id),
+        'pergunta-errada': resultado && isPerguntaErrada(question.id)
+      }"
+    >
       <h3>{{ question.texto }}</h3>
 
       <div *ngFor="let answer of question.answers">
@@ -13,21 +20,30 @@
             [value]="answer.id"
             (change)="selecionarResposta(question.id, answer.id)"
             [checked]="answers[question.id] === answer.id"
+            [disabled]="resultado"
             required
           />
           {{ answer.texto }}
         </label>
       </div>
+
+      <div *ngIf="resultado && isPerguntaErrada(question.id)" style="color: #dc3545; font-weight: 500;">
+        Você errou esta pergunta.
+      </div>
     </div>
 
-    <button type="submit">Enviar Respostas</button>
+    <div style="text-align: center;" *ngIf="!resultado">
+      <button type="submit">Enviar</button>
+    </div>
   </form>
 
-  <div *ngIf="resultado" class="resultado">
-    <h3>Resultado</h3>
-    <p>Total de perguntas: {{ resultado.total }}</p>
-    <p>Acertos: {{ resultado.acertos }}</p>
+  <div class="resultado" *ngIf="resultado">
+    <p>Acertos: {{ resultado.acertos }} / {{ resultado.total }}</p>
     <p>Erros: {{ resultado.erros }}</p>
-    <p>Score: {{ resultado.score }}%</p>
+    <p>Nota: {{ resultado.score }}</p>
+
+     <button type="button" (click)="refazerQuiz()" style="margin-top: 1rem;">
+    Refazer Quiz
+  </button>
   </div>
 </div>

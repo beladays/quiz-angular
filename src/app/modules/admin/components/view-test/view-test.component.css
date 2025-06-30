@@ -1,24 +1,27 @@
+/* Container principal */
 div[style] {
   margin: 20px auto;
   max-width: 800px;
   padding: 10px;
   font-family: 'Poppins', sans-serif;
+  box-sizing: border-box;
 }
 
 /* Bloco da pergunta */
 .question {
-  background-color: #f4f0fb; /* lilás bem claro */
+  background-color: #f4f0fb;
   border-radius: 8px;
   padding: 20px 24px;
   margin-bottom: 24px;
   box-shadow: 0 4px 10px rgba(166, 142, 230, 0.2);
   border: 1px solid #d9cfff;
+  box-sizing: border-box;
 }
 
 /* Título da pergunta */
 .question h3 {
   margin-bottom: 16px;
-  color: #5a3696; /* roxo escuro */
+  color: #5a3696;
   font-size: 1.3rem;
   font-weight: 600;
 }
@@ -28,22 +31,73 @@ div[style] {
   display: flex;
   align-items: center;
   margin-bottom: 12px;
-  cursor: pointer;
+  cursor: default;
   font-size: 1rem;
   color: #4e3d8c;
   transition: background-color 0.3s ease;
   border-radius: 4px;
   padding: 6px 8px;
+  user-select: none;
+  border: 1px solid transparent;
 }
 
 /* Estilo do radio */
 .question input[type="radio"] {
   margin-right: 12px;
-  accent-color: #a68ee6; /* lilás */
+  accent-color: #a68ee6;
   cursor: pointer;
 }
 
-/* Hover ao passar a opção */
-.question label:hover {
-  background-color: #e8ddf8; /* fundo hover suave lilás */
+/* Hover nas alternativas (somente se não for correta/errada) */
+.question label:hover:not(.correta-answer):not(.errada-answer) {
+  background-color: #e8ddf8;
+}
+
+/* Resposta correta */
+.correta-answer {
+  color: #2e7d32;
+  font-weight: 700;
+  background-color: #d0f0d9;
+  border: 1px solid #4caf50;
+}
+
+/* Resposta errada */
+.errada-answer {
+  color: #c62828;
+  font-weight: 700;
+  background-color: #f8d7da;
+  border: 1px solid #d32f2f;
+}
+
+/* Desativa hover para respostas corretas/erradas */
+.correta-answer:hover,
+.errada-answer:hover {
+  background-color: inherit;
+  cursor: default;
+}
+
+/* Botões */
+button {
+  background-color: #7b54e0;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.95rem;
+  box-shadow: 0 3px 8px rgba(123, 84, 224, 0.6);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  margin-top: 12px;
+  user-select: none;
+}
+
+button:hover {
+  background-color: #5e3dcf;
+  box-shadow: 0 6px 14px rgba(94, 61, 207, 0.7);
+}
+
+button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(123, 84, 224, 0.5);
 }

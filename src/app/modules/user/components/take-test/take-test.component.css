@@ -1,3 +1,4 @@
+/* Estilo base */
 html, body {
   height: 100%;
   margin: 0;
@@ -6,23 +7,27 @@ html, body {
   font-family: 'Poppins', sans-serif;
 }
 
-/* Container da prova */
+/* Container principal do quiz */
 .take-test {
   max-width: 800px;
   margin: 2rem auto;
   padding: 2rem;
   border: 1px solid #d6c4f2;
   border-radius: 8px;
-  background-color: #f4f0fb; /* lilás claro suave */
+  background-color: #f4f0fb;
   box-shadow: 0 4px 12px rgba(166, 142, 230, 0.1);
 }
 
-/* Bloco de cada pergunta */
+/* Cada pergunta */
 .question {
   margin-bottom: 2rem;
+  padding: 1rem;
+  border-radius: 6px;
+  background-color: #ffffff;
+  transition: background-color 0.3s, border-left 0.3s;
 }
 
-/* Estilo das alternativas */
+/* Alternativas */
 label {
   display: block;
   margin: 0.5rem 0;
@@ -37,14 +42,14 @@ label:hover {
   background-color: #e8ddf8;
 }
 
-/* Input radio com destaque na cor lilás */
+/* Radios lilás */
 input[type="radio"] {
   margin-right: 8px;
   accent-color: #a68ee6;
   cursor: pointer;
 }
 
-/* Botão com a paleta roxa */
+/* Botão enviar */
 button {
   background-color: #7f58af;
   color: white;
@@ -72,4 +77,32 @@ button:hover {
   color: #5a3696;
   text-align: center;
   font-weight: 500;
+}
+
+/* Pergunta correta */
+.pergunta-correta {
+  background-color: #e2ffe9;
+  border-left: 6px solid #28a745;
+}
+
+/* Pergunta errada */
+.pergunta-errada {
+  background-color: #ffe6e6;
+  border-left: 6px solid #dc3545;
+}
+
+.resultado button {
+  background-color: #a67de6;
+  color: white;
+  padding: 0.5rem 1.2rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 0.9rem;
+  transition: background-color 0.3s ease;
+}
+
+.resultado button:hover {
+  background-color: #9269d9;
 }

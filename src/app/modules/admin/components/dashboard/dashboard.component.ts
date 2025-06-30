@@ -50,11 +50,6 @@ export class DashboardComponent implements OnInit {
     this.router.navigate(['/admin/view-test', id]);
   }
 
-  editQuiz(id: number): void {
-    this.router.navigate(['/admin/edit-quiz', id]);
-
-  }
-
   removeQuiz(id: number): void {
     if (confirm('Tem certeza que deseja remover esse quiz?')) {
       this.adminService.deleteQuiz(id).subscribe({

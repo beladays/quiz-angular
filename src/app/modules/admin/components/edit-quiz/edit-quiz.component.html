@@ -1,18 +1,38 @@
-<div class="edit-quiz-container" *ngIf="!loading; else loadingTpl">
-  <h2>Editar Quiz</h2>
+<div class="edit-question-container">
+  <label for="pergunta-input">Pergunta:</label>
+  <input
+    id="pergunta-input"
+    type="text"
+    [(ngModel)]="question.texto"
+    class="input-pergunta"
+  />
 
-  <form [formGroup]="quizForm" (ngSubmit)="submit()">
-    <label for="titulo">Título *</label>
-    <input id="titulo" formControlName="titulo" />
+  <div class="respostas">
+    <div *ngFor="let answer of question.answers" class="resposta-item">
+      <input
+        type="text"
+        [(ngModel)]="answer.texto"
+        class="input-resposta"
+      />
 
-
-    <div class="buttons">
-      <button type="submit" [disabled]="quizForm.invalid">Salvar</button>
-      <button type="button" (click)="cancel()">Cancelar</button>
+      <label>
+        <input
+          type="radio"
+          [name]="'respostaCorreta' + question.id"
+          [checked]="answer.correta"
+          (change)="marcarComoCorreta(answer.id)"
+        />
+        Correta
+      </label>
     </div>
-  </form>
-</div>
+  </div>
 
-<ng-template #loadingTpl>
-  <p>Carregando...</p>
-</ng-template>
+  <div class="botoes-edicao">
+    <button (click)="updateQuestion()" class="btn-salvar" type="button">
+      Salvar Alterações
+    </button>
+    <button (click)="cancel.emit()" class="btn-cancelar" type="button">
+      Cancelar
+    </button>
+  </div>
+</div>

@@ -1,3 +1,4 @@
+// admin.service.ts
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -16,26 +17,32 @@ export class AdminService {
     return new HttpHeaders().set('Authorization', `Bearer ${token}`);
   }
 
-  // Busca todos os quizzes 
+  // Pega todos os quizes (admin)
   getAllTests(): Observable<any> {
     return this.http.get(`${this.baseUrl}/quizzes`, {
       headers: this.getHeaders()
     });
   }
 
-  // Busca um quiz específico 
+  // Pega um quiz só (admin)
   getTestQuestions(testId: number): Observable<any> {
     return this.http.get(`${this.baseUrl}/quizzes/${testId}`, {
       headers: this.getHeaders()
     });
   }
 
-  // Buscar histórico de respostas dos usuários
+  // Buscar histórico (admin OU usuário - o backend decide)
   getTestResults(): Observable<any> {
     return this.http.get(`${this.baseUrl}/historico`, {
       headers: this.getHeaders()
     });
   }
+
+  getAllTestResults(): Observable<any> {
+  return this.http.get(`${this.baseUrl}/historico/admin`, {
+    headers: this.getHeaders()
+  });
+}
 
   // Criar novo quiz
   createQuiz(quizData: any): Observable<any> {
@@ -65,9 +72,9 @@ export class AdminService {
     });
   }
 
-  // Atualizar quiz existente
-  updateQuiz(id: number, quizData: any): Observable<any> {
-    return this.http.put(`${this.baseUrl}/quizzes/${id}`, quizData, {
+  // Atualizar pergunta
+  updateQuestion(questionData: any): Observable<any> {
+    return this.http.put(`${this.baseUrl}/questions/${questionData.id}`, questionData, {
       headers: this.getHeaders()
     });
   }

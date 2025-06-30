@@ -6,12 +6,8 @@ import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-take-test',
-   standalone: true,
- 
-   imports: [
-    sharedImports,
-    CommonModule,
-    ],
+  standalone: true,
+  imports: [sharedImports, CommonModule],
   templateUrl: './take-test.component.html',
   styleUrls: ['./take-test.component.css'],
 })
@@ -19,7 +15,14 @@ export class TakeTestComponent implements OnInit {
   quizId!: number;
   quiz: any;
   answers: { [key: number]: number } = {};
-  resultado: { total: number; acertos: number; erros: number; score: number } | null = null;
+
+  resultado: {
+    total: number;
+    acertos: number;
+    erros: number;
+    score: string;
+    errosDetalhados: { question_id: number; resposta_correta: number }[];
+  } | null = null;
 
   constructor(private route: ActivatedRoute, private testService: TestService) {}
 
@@ -44,7 +47,6 @@ export class TakeTestComponent implements OnInit {
   }
 
   enviar(): void {
-    // Verifica se todas perguntas estão respondidas
     if (Object.keys(this.answers).length !== this.quiz.questions.length) {
       alert('Por favor, responda todas as perguntas antes de enviar.');
       return;
@@ -59,10 +61,10 @@ export class TakeTestComponent implements OnInit {
       quiz_id: this.quizId,
       respostas: respostasFormatadas
     };
-//mostra resultado logo dps q conclui o quiz
+
     this.testService.submitTest(payload).subscribe({
       next: (res) => {
-        this.resultado = res.resultado; 
+        this.resultado = res.resultado;
         setTimeout(() => {
           document.querySelector('.resultado')?.scrollIntoView({ behavior: 'smooth' });
         }, 100);
@@ -73,4 +75,20 @@ export class TakeTestComponent implements OnInit {
       }
     });
   }
+
+  isPerguntaErrada(questionId: number): boolean {
+    return !!this.resultado?.errosDetalhados?.some(e => e.question_id === questionId);
+  }
+
+  isPerguntaCorreta(questionId: number): boolean {
+    return (
+      this.answers[questionId] !== undefined &&
+      !this.resultado?.errosDetalhados?.some(e => e.question_id === questionId)
+    );
+  }
+  refazerQuiz(): void {
+  this.answers = {};
+  this.resultado = null;
+}
+
 }

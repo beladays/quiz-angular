@@ -1,0 +1,37 @@
+<div class="container">
+  <h2 class="titulo">Resultados dos Usuários</h2>
+
+  <div *ngIf="loading" class="loading">Carregando resultados...</div>
+
+  <div *ngIf="error" class="error">{{ error }}</div>
+
+  <!-- Tabela aparece só se tiver resultados -->
+  <table *ngIf="!loading && !error && resultados?.length > 0" class="resultados-table">
+    <thead>
+      <tr>
+        <th>Nome do Usuário</th>
+        <th>Quiz</th>
+        <th>Pontuação (%)</th>
+        <th>Data da Resposta</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let r of resultados">
+        <td>{{ r.user?.nome || '—' }}</td>
+        <td>{{ r.quiz?.titulo || '—' }}</td>
+        <td>{{ r.score.toFixed(1) }}</td>
+        <td>{{ r.createdAt | date:'short' }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- Mensagem quando não tem resultados -->
+  <div *ngIf="!loading && !error && (!resultados || resultados.length === 0)" class="no-results">
+    Nenhum resultado encontrado.
+  </div>
+
+  <!-- Média geral -->
+  <div *ngIf="!loading && !error && resultados?.length > 0" class="media">
+    Média geral: {{ media.toFixed(2) }}%
+  </div>
+</div>

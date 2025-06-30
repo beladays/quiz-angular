@@ -1,0 +1,68 @@
+.container {
+  max-width: 900px;
+  margin: 30px auto;
+  padding: 0 20px;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: #333;
+  background: #fafafa;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+.titulo {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 28px;
+  font-weight: 700;
+  color: #222;
+}
+
+.loading, .error, .no-results, .media {
+  text-align: center;
+  margin: 15px 0;
+  font-size: 18px;
+}
+
+.error {
+  color: #d9534f; /* vermelho */
+  font-weight: 600;
+}
+
+.no-results {
+  color: #777;
+  font-style: italic;
+}
+
+.media {
+  margin-top: 30px;
+  font-weight: 600;
+  font-size: 20px;
+  color: #2a9d8f; /* verde azulado */
+}
+
+.resultados-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  box-shadow: 0 0 8px rgba(0,0,0,0.05);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.resultados-table thead {
+  background-color: #264653;
+  color: #fff;
+  font-weight: 700;
+}
+
+.resultados-table th, 
+.resultados-table td {
+  padding: 12px 15px;
+  text-align: left;
+  border-bottom: 1px solid #eaeaea;
+}
+
+.resultados-table tbody tr:hover {
+  background-color: #f0f9f8;
+  cursor: default;
+}
