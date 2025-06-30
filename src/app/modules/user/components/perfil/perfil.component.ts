@@ -5,6 +5,7 @@ import { NzNotificationModule, NzNotificationService } from 'ng-zorro-antd/notif
 import { TestService } from '../../services/test.service';
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzAvatarModule } from 'ng-zorro-antd/avatar';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-perfil',
@@ -20,16 +21,21 @@ import { NzAvatarModule } from 'ng-zorro-antd/avatar';
   styleUrls: ['./perfil.component.css']
 })
 export class PerfilComponent implements OnInit {
-  user = { name: '', email: '', avatarUrl: 'https://i.pravatar.cc/150?img=3' };
+  user = { name: '', email: '' };
   quizStats: any[] = [];
 
-  constructor(private testService: TestService, private notification: NzNotificationService) {}
+  constructor(
+    private testService: TestService,
+     private notification: NzNotificationService, 
+     private router: Router ) {}
 
   ngOnInit() {
     this.loadUser();
     this.loadHistory();
   }
-
+    voltar() {
+    this.router.navigate(['user/dashboard']); 
+  }
   loadUser() {
     this.testService.getUserProfile().subscribe({
       next: (res) => {
