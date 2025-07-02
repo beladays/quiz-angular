@@ -102,3 +102,46 @@ button:hover {
 .resultado button:hover {
   background-color: #9269d9;
 }
+
+
+
+
+
+/* responsividade*/
+@media (max-width: 991px) {
+  body {
+    font-size: 1.05rem;
+  }
+
+  label {
+    font-size: 1.1rem;
+  }
+
+  button,
+  .resultado button {
+    font-size: 1.1rem;
+  }
+
+  .resultado {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 600px) {
+  body {
+    font-size: 1.15rem;
+  }
+
+  label {
+    font-size: 1.2rem;
+  }
+
+  button,
+  .resultado button {
+    font-size: 1.2rem;
+  }
+
+  .resultado {
+    font-size: 1.3rem;
+  }
+}

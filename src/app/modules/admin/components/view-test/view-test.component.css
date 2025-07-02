@@ -101,3 +101,34 @@ button:focus {
   outline: none;
   box-shadow: 0 0 0 3px rgba(123, 84, 224, 0.5);
 }
+
+/*responsividade*/
+@media (max-width: 991px) {
+  .question h3 {
+    font-size: 1.4rem;
+  }
+
+  .question label {
+    font-size: 1.1rem;
+  }
+
+  button {
+    font-size: 1.05rem;
+    padding: 10px 18px;
+  }
+}
+
+@media (max-width: 600px) {
+  .question h3 {
+    font-size: 1.5rem;
+  }
+
+  .question label {
+    font-size: 1.2rem;
+  }
+
+  button {
+    font-size: 1.15rem;
+    padding: 12px 20px;
+  }
+}
