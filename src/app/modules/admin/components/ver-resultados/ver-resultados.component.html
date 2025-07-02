@@ -1,4 +1,4 @@
-<div class="container">
+<div class="container"> 
   <h2 class="titulo">Resultados dos Usuários</h2>
 
   <div *ngIf="loading" class="loading">Carregando resultados...</div>
@@ -30,8 +30,15 @@
     Nenhum resultado encontrado.
   </div>
 
-  <!-- Média geral -->
-  <div *ngIf="!loading && !error && resultados?.length > 0" class="media">
-    Média geral: {{ media.toFixed(2) }}%
+  <!-- Médias por Quiz -->
+<div *ngIf="!loading && !error && resultados?.length > 0 && mediasPorQuiz" class="medias-por-quiz">
+  <h3>Média por Quiz</h3>
+  <div class="media-cards">
+    <div class="media-card" *ngFor="let quiz of mediasPorQuiz | keyvalue">
+      <h4>{{ quiz.key }}</h4>
+      <p>{{ quiz.value.toFixed(1) }}%</p>
+    </div>
   </div>
+</div>
+
 </div>

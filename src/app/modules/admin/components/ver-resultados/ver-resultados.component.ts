@@ -18,7 +18,7 @@ export class VerResultadosComponent implements OnInit {
     createdAt: string;
   }> = [];
 
-  media: number = 0; // <-- DECLARA AQUI
+  mediasPorQuiz: { [quizTitulo: string]: number } = {};
 
   loading = true;
   error = '';
@@ -29,7 +29,7 @@ export class VerResultadosComponent implements OnInit {
     this.adminService.getAllTestResults().subscribe({
       next: (res) => {
         this.resultados = res.resultados || [];
-        this.media = res.media || 0;
+        this.mediasPorQuiz = res.mediasPorQuiz || {};
         this.loading = false;
       },
       error: () => {

@@ -21,7 +21,7 @@ export class TakeTestComponent implements OnInit {
     acertos: number;
     erros: number;
     score: string;
-    errosDetalhados: { question_id: number; resposta_correta: number }[];
+    perguntasErradas: { question_id: number; resposta_correta: number }[];
   } | null = null;
 
   constructor(private route: ActivatedRoute, private testService: TestService) {}
@@ -76,16 +76,17 @@ export class TakeTestComponent implements OnInit {
     });
   }
 
-  isPerguntaErrada(questionId: number): boolean {
-    return !!this.resultado?.errosDetalhados?.some(e => e.question_id === questionId);
-  }
+ isPerguntaErrada(questionId: number): boolean {
+  return !!this.resultado?.perguntasErradas?.some(e => e.question_id === questionId);
+}
 
-  isPerguntaCorreta(questionId: number): boolean {
-    return (
-      this.answers[questionId] !== undefined &&
-      !this.resultado?.errosDetalhados?.some(e => e.question_id === questionId)
-    );
-  }
+isPerguntaCorreta(questionId: number): boolean {
+  return (
+    this.answers[questionId] !== undefined &&
+    !this.resultado?.perguntasErradas?.some(e => e.question_id === questionId)
+  );
+}
+
   refazerQuiz(): void {
   this.answers = {};
   this.resultado = null;

@@ -33,13 +33,6 @@
   font-style: italic;
 }
 
-.media {
-  margin-top: 30px;
-  font-weight: 600;
-  font-size: 20px;
-  color: #2a9d8f; /* verde azulado */
-}
-
 .resultados-table {
   width: 100%;
   border-collapse: collapse;
@@ -65,4 +58,56 @@
 .resultados-table tbody tr:hover {
   background-color: #f0f9f8;
   cursor: default;
+}
+
+.medias-por-quiz {
+  margin-top: 40px;
+  padding: 20px;
+  background-color: #f0fdf4;
+  border: 2px solid #b9f6ca;
+  border-radius: 10px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+}
+
+.medias-por-quiz h3 {
+  margin-bottom: 20px;
+  color: #2e7d32;
+  font-size: 24px;
+  text-align: center;
+  font-weight: 700;
+}
+
+.media-cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 16px;
+}
+
+.media-card {
+  background-color: #ffffff;
+  border: 1px solid #c8e6c9;
+  border-radius: 8px;
+  padding: 16px 24px;
+  min-width: 140px;
+  text-align: center;
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease-in-out;
+}
+
+.media-card:hover {
+  transform: scale(1.05);
+}
+
+.media-card h4 {
+  font-size: 18px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  color: #388e3c;
+}
+
+.media-card p {
+  font-size: 20px;
+  font-weight: 700;
+  color: #1b5e20;
 }
