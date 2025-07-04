@@ -3,6 +3,7 @@ Este projeto é um sistema de quiz onde **apenas administradores autenticados** 
 **criar, editar e excluir quizzes**, enquanto **alunos logados** podem **responder quizzes e
 visualizar os resultados**.
 ## 1. Tecnologias Utilizadas
+### 1.1 Front-End
 - **Angular** – Framework principal para construção do SPA (Single Page Application)
 - **RxJS** – utilizado no projeto para lidar com operações assíncronas, principalmente nas requisições HTTP feitas aos endpoints da API.
 - **Ng-Zorro** – Biblioteca de componentes visuais (botões, tabelas, ícones, notificações etc.)
