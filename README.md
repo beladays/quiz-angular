@@ -22,6 +22,7 @@ arquivo `.env`.
 ```bash
 cd quiz-back
 npm i
+npx prisma generate
 npm start
 ````
 ### 2.4 Rodar o Front-End
