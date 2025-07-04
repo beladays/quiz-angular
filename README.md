@@ -22,7 +22,7 @@ arquivo `.env`.
 ```bash
 cd quiz-back
 npm i
-node --watch server.js
+npm start
 ````
 ### 2.4 Rodar o Front-End
 ```bash
